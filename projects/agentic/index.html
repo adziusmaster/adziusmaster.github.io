@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agentic Compiler — Andrzej Lech</title>
+<meta name="description" content="A verifier-first language for LLM-authored code: an independent checker must accept the program before it runs, so hallucination becomes a build failure.">
+<meta name="color-scheme" content="dark">
+<link rel="stylesheet" href="../../assets/css/site.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead-outer">
+  <div class="wrap masthead">
+    <a class="mark" href="../../index.html">&#9670;&nbsp; A. Lech</a>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="../../index.html#work">Work</a></li>
+        <li><a href="../../index.html#garage">Garage</a></li>
+        <li><a href="../../index.html#about">About</a></li>
+        <li><a href="../../index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <span class="mono coords">Rotterdam &nbsp;51.92&deg;N 4.48&deg;E</span>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="project-head">
+    <div class="wrap">
+      <span class="section-label">[ Project ] &nbsp;Agentic Compiler</span>
+      <h1>Agentic<br>Compiler</h1>
+      <p class="lede">
+        A small language built around one rule: every program a model writes has to pass
+        an independent checker before it is allowed to run.
+      </p>
+      <div class="project-links">
+        <a href="https://github.com/adziusmaster/agentic-compiler" rel="noopener">Source &rarr;</a>
+        <span class="project-note">Open source</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <span class="section-label">[ 01 ] &nbsp;Why</span>
+      <h2>Make hallucination a build failure</h2>
+      <div class="prose">
+        <p>
+          A language model writing code is confidently wrong in a way that looks exactly
+          like being right. The usual answers are more review, more tests, more prompting
+          &mdash; all of which ask a human to catch what the machine got wrong, at
+          machine speed. That trade only gets worse.
+        </p>
+        <p>
+          So the premise here is different: <strong>don&rsquo;t trust the generator, gate
+          it.</strong> AGC is a small Lisp-shaped language whose programs are checked by an
+          independent verifier &mdash; under 1,500 lines, standard library only &mdash;
+          that reads the compiled binary plus a manifest and decides accept or reject from
+          first principles. It never asks the compiler what it meant. If the program
+          doesn&rsquo;t hold up, it doesn&rsquo;t build. Hallucination stops being a
+          debugging problem and becomes a build error.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <span class="section-label">[ 02 ] &nbsp;What&rsquo;s interesting</span>
+      <h2>Verification turned out to be nearly free</h2>
+      <div class="prose">
+        <p>
+          The obvious objection is cost: surely all that verifying makes it far more
+          expensive than just asking a frontier model. It did, at first &mdash; about
+          eight times more expensive.
+        </p>
+        <p>
+          The current result is a <strong>7B model, 4-bit quantised, running on my own
+          machine, solving all 30 benchmark problems with every solution machine-verified,
+          at roughly 1.06&times; the token cost of a frontier one-shot</strong> &mdash;
+          which is inside the noise of how the two are counted. Reproduced across two
+          consecutive runs. The frontier baseline solves the same 30, but nothing checks
+          its answers.
+        </p>
+        <p>
+          The part I insist on writing down: <strong>four later training runs failed to
+          beat that one.</strong> Every new bucket of training data broke something
+          elsewhere in the benchmark. Those are in the repo as a chronicle of negative
+          results, along with a list of things this work explicitly does <em>not</em>
+          claim &mdash; the benchmark problems are small, the syntax is more verbose than
+          Python, and none of it has been validated on a held-out set. A result you can
+          only believe if you skip the caveats isn&rsquo;t a result.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <span class="section-label">[ 03 ] &nbsp;Stack</span>
+      <div class="stack-row">
+        <span>C#</span>
+        <span>Custom verifier</span>
+        <span>Qwen-Coder 7B</span>
+        <span>LoRA fine-tuning</span>
+        <span>4-bit quantisation</span>
+        <span>30-problem benchmark</span>
+      </div>
+      <p style="margin-top:34px"><a class="back" href="../../index.html#work">&larr; &nbsp;All work</a></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap mono">
+    <span>Lech Digital &mdash; Rotterdam</span>
+    <span>Built by hand. No trackers, no cookies, no JavaScript.</span>
+  </div>
+</footer>
+
+</body>
+</html>

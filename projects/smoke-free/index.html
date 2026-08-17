@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Smoke Free — Andrzej Lech</title>
+<meta name="description" content="A free, offline quit-smoking tracker that physically cannot phone home. Sourced recovery milestones, honest slip handling.">
+<meta name="color-scheme" content="dark">
+<link rel="stylesheet" href="../../assets/css/site.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead-outer">
+  <div class="wrap masthead">
+    <a class="mark" href="../../index.html">&#9670;&nbsp; A. Lech</a>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="../../index.html#work">Work</a></li>
+        <li><a href="../../index.html#garage">Garage</a></li>
+        <li><a href="../../index.html#about">About</a></li>
+        <li><a href="../../index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <span class="mono coords">Rotterdam &nbsp;51.92&deg;N 4.48&deg;E</span>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="project-head">
+    <div class="wrap">
+      <span class="section-label">[ Project ] &nbsp;Smoke Free</span>
+      <h1>Smoke Free</h1>
+      <p class="lede">
+        A quit-smoking tracker that works with the aeroplane mode on. No account,
+        no ads, nothing to buy, and no way for it to talk to me about you.
+      </p>
+      <div class="project-links">
+        <span class="project-note">Android &middot; not yet released &middot; source currently private</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <span class="section-label">[ 01 ] &nbsp;Why</span>
+      <h2>Everything else wanted my money</h2>
+      <div class="prose">
+        <p>
+          I tried to quit smoking, and did what everyone does: went looking for an app to
+          count the days. Every one I found either cost money up front or handed me the
+          counter for free and then sold the useful parts back to me one micropayment at
+          a time &mdash; the timeline, the milestones, the thing that tells you why day
+          three feels like that.
+        </p>
+        <p>
+          <strong>Charging someone for help quitting a substance that is actively killing
+          them is a business model I want no part of.</strong> So I wrote the version I
+          wanted: free, complete, no account, no upsell, no ads. It exists because the
+          alternative made me angry, which turns out to be a decent reason to build
+          something.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <span class="section-label">[ 02 ] &nbsp;What&rsquo;s interesting</span>
+      <h2>A promise you don&rsquo;t have to take my word for</h2>
+      <div class="prose">
+        <p>
+          Every app claims it respects your privacy. This one removes the ability to break
+          the promise: <code>android.blockedPermissions</code> strips <code>INTERNET</code>
+          out of the manifest, so the installed app <strong>physically cannot open a
+          network socket</strong>. Not "doesn't", not "we don't sell your data" &mdash;
+          cannot. Anyone suspicious enough can pull the APK apart and verify it in about a
+          minute, which is the point. A privacy claim you can check beats a privacy policy
+          you have to trust.
+        </p>
+        <p>
+          The other decision I&rsquo;m glad about is refusing to make things up. Every
+          physiological claim in the recovery timeline resolves to a real source. Two
+          milestones that appear in nearly every quit-smoking timeline online &mdash;
+          nerve endings regrowing at 48 hours, lung capacity jumping at 72 &mdash; are
+          deliberately absent, because I couldn&rsquo;t trace either one to a primary
+          source. And when someone slips, the app doesn&rsquo;t invent a number of "days
+          of healing lost". Markers driven by a single exposure restart; markers driven by
+          years of cumulative exposure don&rsquo;t. Where the honest answer is "nobody
+          knows", it says nothing rather than something comforting and false.
+        </p>
+        <p>
+          The domain layer is pure functions with the clock passed in as an argument, which
+          is why 102 tests can run in Node with no emulator anywhere in sight.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <span class="section-label">[ 03 ] &nbsp;Stack</span>
+      <div class="stack-row">
+        <span>Expo SDK 57</span>
+        <span>expo-router</span>
+        <span>TypeScript</span>
+        <span>SQLite</span>
+        <span>Vitest</span>
+        <span>102 tests</span>
+      </div>
+      <p style="margin-top:34px"><a class="back" href="../../index.html#work">&larr; &nbsp;All work</a></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap mono">
+    <span>Lech Digital &mdash; Rotterdam</span>
+    <span>Built by hand. No trackers, no cookies, no JavaScript.</span>
+  </div>
+</footer>
+
+</body>
+</html>
