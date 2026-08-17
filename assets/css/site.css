@@ -351,8 +351,20 @@ a:hover { color: var(--paper); }
   text-transform: uppercase;
   color: var(--amber);
   text-decoration: none;
+  position: relative;
+  display: inline-block;
 }
 .mark:hover { color: var(--paper); }
+
+/* The lettering is only ~20px tall, well under the 44px a thumb expects. Grow
+   the hit area with an absolutely positioned overlay rather than padding: it
+   captures the tap but contributes no height, so the masthead does not move
+   and the baseline alignment above still holds. */
+.mark::after {
+  content: '';
+  position: absolute;
+  inset: -13px -10px;
+}
 
 .masthead nav ul {
   display: flex;
