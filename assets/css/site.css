@@ -743,7 +743,11 @@ a.card:focus-visible::after { opacity: 1; }
   body { font-size: 1rem; }
 
   .masthead {
-    align-items: flex-start;
+    /* Baseline, not flex-start: the nav links carry padding-block: 11px as a tap
+       target and the mark carries none, so aligning the boxes by their top edges
+       left the mark sitting 10px above the nav text. Baselines line the lettering
+       up regardless of the padding, and leave the wrapped layout untouched. */
+    align-items: baseline;
     gap: 6px 20px;
   }
   .masthead nav ul { gap: 16px; }
