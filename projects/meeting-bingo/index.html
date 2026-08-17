@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meeting Bingo — Andrzej Lech</title>
+<meta name="description" content="Real-time multiplayer buzzword bingo for your next meeting. One codebase that is both the website and the Android app.">
+<meta name="color-scheme" content="dark">
+<link rel="stylesheet" href="../../assets/css/site.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead-outer">
+  <div class="wrap masthead">
+    <a class="mark" href="../../index.html">&#9670;&nbsp; A. Lech</a>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="../../index.html#work">Work</a></li>
+        <li><a href="../../index.html#garage">Garage</a></li>
+        <li><a href="../../index.html#about">About</a></li>
+        <li><a href="../../index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <span class="mono coords">Rotterdam &nbsp;51.92&deg;N 4.48&deg;E</span>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="project-head">
+    <div class="wrap">
+      <span class="section-label">[ Project ] &nbsp;Meeting Bingo</span>
+      <h1>Meeting Bingo</h1>
+      <p class="lede">
+        Real-time multiplayer bingo for your next meeting. Join a room, mark the
+        buzzwords as you hear them, and try not to shout when you win.
+      </p>
+      <div class="project-links">
+        <a href="https://meeting-bingo-a52cc.web.app" rel="noopener">Play it &rarr;</a>
+        <a href="https://github.com/adziusmaster/meeting-bingo" rel="noopener">Source &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <span class="section-label">[ 01 ] &nbsp;Why</span>
+      <h2>Not everything has to be serious</h2>
+      <div class="prose">
+        <p>
+          Some meetings are a genuine use of everyone&rsquo;s morning. The others are
+          "circling back" to "align on synergies" and "socialise the roadmap". You
+          can&rsquo;t leave, so you may as well score points.
+        </p>
+        <p>
+          Every player gets their own shuffled card, marks tiles as the words land, and
+          the first to a line wins. There&rsquo;s a chat, there are emoji reactions that
+          float across everyone&rsquo;s screen at once, and there are unlockable card
+          themes, because if you&rsquo;re going to build something silly you should
+          commit to it. <strong>It&rsquo;s here on the site for the same reason it
+          exists: not everything I build needs to justify itself.</strong>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <span class="section-label">[ 02 ] &nbsp;What&rsquo;s interesting</span>
+      <h2>One codebase, two products, no server</h2>
+      <div class="prose">
+        <p>
+          It&rsquo;s a real-time multiplayer game with <strong>no backend of my own</strong>.
+          Firestore&rsquo;s live listeners do the synchronisation: every client subscribes
+          to the room document, and marking a tile is a write everyone else sees land.
+          There is no socket server to keep alive, nothing to scale, and nothing to wake up
+          for at 3am.
+        </p>
+        <p>
+          The second half is distribution. It&rsquo;s an installable PWA, and the Android
+          build is a Trusted Web Activity wrapping that same PWA, verified by digital
+          asset links &mdash; so the app and the website are one codebase, deployed once,
+          with no separate mobile project to keep in step. A silly game is exactly the
+          right place to find out whether that arrangement actually holds up.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <span class="section-label">[ 03 ] &nbsp;Stack</span>
+      <div class="stack-row">
+        <span>React 18</span>
+        <span>TypeScript</span>
+        <span>Vite</span>
+        <span>Material UI v6</span>
+        <span>Firestore</span>
+        <span>Firebase Auth</span>
+        <span>PWA + TWA</span>
+      </div>
+      <p style="margin-top:34px"><a class="back" href="../../index.html#work">&larr; &nbsp;All work</a></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap mono">
+    <span>Lech Digital &mdash; Rotterdam</span>
+    <span>Built by hand. No trackers, no cookies, no JavaScript.</span>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Coldstart — Andrzej Lech</title>
+<meta name="description" content="Coldstart finds B2B leads overnight and drafts the first email. A person approves every one before it sends.">
+<meta name="color-scheme" content="dark">
+<link rel="stylesheet" href="../../assets/css/site.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead-outer">
+  <div class="wrap masthead">
+    <a class="mark" href="../../index.html">&#9670;&nbsp; A. Lech</a>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="../../index.html#work">Work</a></li>
+        <li><a href="../../index.html#garage">Garage</a></li>
+        <li><a href="../../index.html#about">About</a></li>
+        <li><a href="../../index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <span class="mono coords">Rotterdam &nbsp;51.92&deg;N 4.48&deg;E</span>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="project-head">
+    <div class="wrap">
+      <span class="section-label">[ Project ] &nbsp;Coldstart</span>
+      <h1>Coldstart</h1>
+      <p class="lede">
+        Finds B2B leads overnight and drafts the first email, so the morning starts
+        with a queue to review instead of a blank page.
+      </p>
+      <div class="project-links">
+        <a href="https://getcoldstart.nl" rel="noopener">getcoldstart.nl &rarr;</a>
+        <span class="project-note">Source is private &mdash; it&rsquo;s a commercial product.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <span class="section-label">[ 01 ] &nbsp;Why</span>
+      <h2>The blank page is the expensive part</h2>
+      <div class="prose">
+        <p>
+          Cold outreach is grim work, and the grimmest part isn&rsquo;t sending &mdash;
+          it&rsquo;s the blank page. Finding a company worth writing to, working out
+          why they&rsquo;d care this week rather than any other week, and then writing
+          the first sentence. Do that thirty times and the day is gone.
+        </p>
+        <p>
+          Coldstart does the overnight half. It hunts while nobody is working, scores
+          what it finds, and leaves a stack of drafted first emails waiting in the morning.
+          <strong>Nothing sends by itself.</strong> Every draft waits for a person to
+          approve it, rewrite it, or throw it away, and sending is handed off to the
+          customer&rsquo;s own inbox rather than blasted from a shared one.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <span class="section-label">[ 02 ] &nbsp;What&rsquo;s interesting</span>
+      <h2>Where the model isn&rsquo;t</h2>
+      <div class="prose">
+        <p>
+          The decision I&rsquo;d defend is about the parts that <em>don&rsquo;t</em> use a
+          language model. Harvesting, signal scoring and deduplication are all
+          deterministic: signals are scored by rules I can read, and every lead carries a
+          fingerprint so the same company can&rsquo;t arrive twice wearing a different name.
+        </p>
+        <p>
+          Only once a lead survives that does the model get involved, and only for the two
+          jobs it&rsquo;s genuinely good at &mdash; judging whether the lead is a fit, and
+          writing readable prose. It never chooses what to harvest and it never chooses
+          what to send. <strong>So when it&rsquo;s wrong, it&rsquo;s wrong about a draft
+          someone is about to read</strong>, not about a database nobody will ever audit.
+        </p>
+        <p>
+          The rest is unglamorous on purpose: hexagonal architecture so the domain
+          doesn&rsquo;t know what a database is, a signature-verified Stripe webhook rather
+          than trusting a redirect, and a single-host Docker deployment I can reason about
+          at midnight.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <span class="section-label">[ 03 ] &nbsp;Stack</span>
+      <div class="stack-row">
+        <span>.NET 10</span>
+        <span>Razor Pages</span>
+        <span>EF Core</span>
+        <span>PostgreSQL 17</span>
+        <span>ASP.NET Identity</span>
+        <span>Stripe</span>
+        <span>Docker + Caddy</span>
+      </div>
+      <p style="margin-top:34px"><a class="back" href="../../index.html#work">&larr; &nbsp;All work</a></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap mono">
+    <span>Lech Digital &mdash; Rotterdam</span>
+    <span>Built by hand. No trackers, no cookies, no JavaScript.</span>
+  </div>
+</footer>
+
+</body>
+</html>
