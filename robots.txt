@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://lechdigital.nl/sitemap.xml
