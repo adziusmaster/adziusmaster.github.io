@@ -1,0 +1,38 @@
+{
+  "name": "Andrzej Lech — developer, Rotterdam",
+  "short_name": "A. Lech",
+  "description": "Backend and AI systems by day; compilers, Android apps and stubborn side projects by night.",
+  "lang": "en",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "display": "browser",
+  "background_color": "#0F0A0D",
+  "theme_color": "#0F0A0D",
+  "icons": [
+    {
+      "src": "/assets/icons/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/icon-maskable-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    }
+  ]
+}
