@@ -159,4 +159,15 @@ change means editing all seven HTML files.
 - The enquiry form falls back to `mailto:`. Setting `data-endpoint` on
   `<form id="form">` to a Formspree URL is the only change needed to post
   directly.
+- The form's dropdown, calendar and number stepper are drawn by `site.js` over
+  the native controls, because a `<select>` popup and a date input's calendar
+  are browser chrome no stylesheet can reach. The natives stay in the markup
+  and are what submits. Rules that hide native affordances are scoped under
+  `.form[data-enhanced]` so the no-JS path keeps them.
+- Sending requires the acknowledgement box. It is deliberately *not* a consent:
+  section 3 of the privacy policy gives art. 6(1)(b) RODO as the basis for
+  answering an enquiry, so asking for consent as well would name a basis the
+  build does not rely on. The tick is not stored anywhere; it rides along as
+  `Polityka prywatności: przyjęta do wiadomości`. Keep the two in step if
+  either the policy or the wording changes.
 - `zalawie.pl` — same owner, another tired site. Possible next prospect.

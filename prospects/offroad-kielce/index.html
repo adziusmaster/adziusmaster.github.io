@@ -312,15 +312,16 @@
           <input id="name" name="name" type="text" autocomplete="name" required>
         </div>
 
-        <div class="field field--pair">
-          <div>
-            <label for="phone">Telefon</label>
-            <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required>
-          </div>
-          <div>
-            <label for="email">E-mail</label>
-            <input id="email" name="email" type="email" autocomplete="email">
-          </div>
+        <!-- Full rows on purpose: a half-width column clips an ordinary
+             address after 19 characters, which reads as a broken field. -->
+        <div class="field">
+          <label for="phone">Telefon</label>
+          <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required>
+        </div>
+
+        <div class="field">
+          <label for="email">E-mail</label>
+          <input id="email" name="email" type="email" autocomplete="email">
         </div>
 
         <!-- Full row on purpose: the longest option ("Impreza lub integracja")
@@ -349,6 +350,23 @@
         <div class="field">
           <label for="message">Wiadomość</label>
           <textarea id="message" name="message" rows="4" placeholder="Napisz, ile Was jest i czego oczekujecie."></textarea>
+        </div>
+
+        <!-- An acknowledgement, not a consent: section 3 of the privacy policy
+             gives art. 6(1)(b) RODO as the basis for answering an enquiry, so
+             asking for consent on top of it would name a basis we do not rely
+             on. This confirms the visitor knows what the data is for. -->
+        <div class="field field--consent">
+          <input id="consent" name="consent" type="checkbox"
+                 value="przyjęta do wiadomości" required>
+          <label for="consent">
+            <span class="tick" aria-hidden="true"></span>
+            <span>
+              Przyjmuję do wiadomości, że moje dane posłużą do kontaktu
+              w sprawie tego zapytania. Szczegóły w
+              <a href="polityka-prywatnosci.html">Polityce prywatności</a>.
+            </span>
+          </label>
         </div>
 
         <button class="btn btn--solid btn--block" type="submit">Wyślij zapytanie</button>
