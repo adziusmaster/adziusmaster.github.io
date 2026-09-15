@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
 
+# Client demos. Each one mirrors a real business, so keeping them out of the
+# index stops them competing with that business's own site for its brand terms.
+Disallow: /prospects/
+
 Sitemap: https://lechdigital.nl/sitemap.xml
