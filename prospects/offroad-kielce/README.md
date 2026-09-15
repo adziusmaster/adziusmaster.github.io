@@ -19,7 +19,7 @@ the `lechdigital.nl` path so link previews render when the URL is shared.
 ## Handing it over
 
 The folder is self-contained — all internal links are relative, so it runs from
-a domain root unchanged. Three things to undo, two of them mechanical:
+a domain root unchanged. Four things to undo, two of them mechanical:
 
 ```sh
 # 1. Point absolute URLs back at the client's domain
@@ -32,7 +32,23 @@ sed -i '' '/^<meta name="robots" content="noindex, nofollow">$/d' \
   index.html vouchery.html imprezy-i-integracje.html eventy-firmowe.html
 ```
 
-3. Remove the `Strona: Lech Digital` line from each footer if the client would
+3. **Repoint the five Agroturystyka links.** `index.html` (the offer card),
+   `imprezy-i-integracje.html`, `eventy-firmowe.html`, `faq.html` and
+   `polityka-prywatnosci.html` all link to
+   `https://lechdigital.nl/prospects/zalawie/` — the *pitch* build of the other
+   business, which is the good version of that site while both are being shown.
+   On handover they go to whatever Agroturystyka Załawie is actually serving,
+   `zalawie.pl` or its rebuild:
+
+   ```sh
+   grep -rl 'lechdigital.nl/prospects/zalawie/' *.html \
+     | xargs sed -i '' 's|https://lechdigital.nl/prospects/zalawie/|https://zalawie.pl/|g'
+   ```
+
+   The link text names the business rather than a domain, so it stays correct
+   either way and needs no editing.
+
+4. Remove the `Strona: Lech Digital` line from each footer if the client would
    rather not carry the credit.
 
 Then upload everything except `README.md` and `QUESTIONS.md`.
@@ -178,8 +194,10 @@ under 2 MB), these guards can be relaxed.
 - **Gallery images are 600×450.** They are soft on a large display. The only
   full-resolution photograph is `offroad.jpg` (1600×1066), which is why it holds
   the hero and the large gallery tile. Originals would make a visible difference.
-- **No photograph exists for Agroturystyka**, so that card is text-only and
-  links out to `zalawie.pl`.
+- **No photograph exists for Agroturystyka**, so that card is text-only. It
+  links out to the Załawie pitch build in `../zalawie/` — see step 3 of the
+  handover notes above. The two builds link to each other but share no code;
+  each folder still lifts out on its own.
 - **The logo artwork has black lettering**, so it cannot sit directly on the dark
   bar. It is placed on a sand-coloured plate (`.brand`). A version with light
   lettering would let that plate go away.

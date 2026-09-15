@@ -146,8 +146,9 @@ change means editing all seven HTML files.
   behind the hero, but `site.js` loads it only on viewports > 720px, with
   motion allowed, no `saveData`, and not on 2G. Phones keep the poster image.
   If it's ever re-encoded (a 5s loop should be under 2 MB) those guards can relax.
-- No photograph exists for Agroturystyka, so that card is text-only and links
-  out to `zalawie.pl`.
+- No photograph exists for Agroturystyka, so that card is text-only. It and
+  four other mentions link to the Załawie pitch build, not to `zalawie.pl` —
+  step 3 of that build's handover notes repoints them.
 
 ### Open threads
 
@@ -170,4 +171,87 @@ change means editing all seven HTML files.
   build does not rely on. The tick is not stored anywhere; it rides along as
   `Polityka prywatności: przyjęta do wiadomości`. Keep the two in step if
   either the policy or the wording changes.
-- `zalawie.pl` — same owner, another tired site. Possible next prospect.
+- `zalawie.pl` is now built too — see `prospects/zalawie` below. The two link
+  to each other and share the amber `#F9B321`, and nothing else.
+
+---
+
+## prospects/zalawie
+
+Rebuild of `zalawie.pl` — Agroturystyka Załawie, a century-old farm at Brudzów,
+19 km from Kielce, with two lets on three hectares. **Same owner as Offroad
+Kielce**: they share a phone number, and each of his own sites names the other.
+Not handed over.
+
+Live: <https://lechdigital.nl/prospects/zalawie/>
+
+### The content rule
+
+Same discipline as the Offroad build. **Everything traces back to zalawie.pl;
+the wording is new throughout, no fact, number, price or claim was invented.**
+Gaps are `TODO` comments plus yellow `<mark class="todo">`, each pointing at a
+numbered section of `QUESTIONS.md`.
+
+The sharpest gap: **his two cottages have two different names each** across his
+own pages — *Chłopska chata* / *Stodoła* on the homepage, *Wiejski Domek* /
+*Kamienna Stodoła* on the amenities page. The build uses the short forms the
+gallery headings use, **Chata** and **Stodoła**, being the only names that
+appear in both. Don't pick one of the long pairs without asking him.
+
+### Pages
+
+`index.html`, `domki.html`, `imprezy.html`, `atrakcje.html`, `galeria.html`,
+`polityka-prywatnosci.html`. All `noindex`. Nav is seven items plus the phone
+button, duplicated per page — no templating.
+
+### The design — "dzień"
+
+Offroad at noon. That build is one unbroken dark field; this is one unbroken
+light one — ink `#221E19` on linen `#F4EFE6`, pine `#465A44` as the cool note,
+clay `#B4704A` for wood. **The amber is the identical `#F9B321`**, off the same
+logo, and that shared hex is the entire family resemblance. No shared CSS, JS or
+assets; the folders are independent.
+
+The three craft rules carry across inverted: nothing casts black (shadows are
+warm sun, never neutral grey), two fixed decorative layers on
+`body::before`/`::after` with transparent section backgrounds, and one slow
+loop — the sun drifting across the hero.
+
+Type is Fraunces (display) + Inter (body), Google Fonts, `latin-ext`.
+
+### Two things a light ground forced
+
+- **The hero hands over sideways, not upward.** Ink over a full-strength
+  photograph is unreadable; text sits on linen at the left and the farm resolves
+  at the right. A vertical wash would have to bleach the whole photo.
+- **The top bar always carries linen.** It cannot float transparent over a
+  photograph the way Offroad's does over a dark one.
+
+### Breakpoints
+
+The nav row needs a **958px** viewport here (Fraunces plus a 168px logo), so the
+drawer takes over at **1000px** — not Offroad's 900px. Layout rules stack at
+900px and the mobile block is 720px. Don't copy breakpoints between the two
+builds; measure.
+
+### Known weak spots
+
+- Every photograph is **600×450** except the two page headers (1920×701 and
+  1920×700), which is why those carry the hero and the subpage headers.
+- The originals were exported badly — 3.2 MB of PNG for one header. Everything
+  was converted once with `sips`, 15 MB down to 4.8 MB. A one-off conversion
+  committed to the repo, not a build step.
+- Several attractions have **no photograph**, so those cards are text-only.
+- `imprezy.html` is the thinnest page: the original says almost nothing concrete
+  about events. Note **11 beds against "up to 30 people"** — those cannot both
+  describe a sleepover, and section 4 of `QUESTIONS.md` asks.
+
+### Open threads
+
+- The band under the hero — off-road free from five days — **is quoted from his
+  site, not inferred** (unlike Offroad's yellow band). But it is load-bearing
+  here, so section 9 asks him to confirm there is no catch.
+- The privacy policy needs company name, address and NIP — **the same three
+  fields the Offroad build is waiting on**. One answer unblocks both.
+- `QUESTIONS.md` is written to the owner in casual Polish, first person
+  singular. Keep that voice.
