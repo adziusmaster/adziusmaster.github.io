@@ -321,25 +321,27 @@
           </div>
         </div>
 
+        <!-- Full row on purpose: the longest option ("Impreza lub integracja")
+             is clipped in a half-width column. The two short fields pair up. -->
+        <div class="field">
+          <label for="type">Rodzaj wydarzenia</label>
+          <select id="type" name="type">
+            <option>Jazda indywidualna</option>
+            <option>Voucher prezentowy</option>
+            <option>Impreza lub integracja</option>
+            <option>Event firmowy</option>
+          </select>
+        </div>
+
         <div class="field field--pair">
-          <div>
-            <label for="type">Rodzaj wydarzenia</label>
-            <select id="type" name="type">
-              <option>Jazda indywidualna</option>
-              <option>Voucher prezentowy</option>
-              <option>Impreza lub integracja</option>
-              <option>Event firmowy</option>
-            </select>
-          </div>
           <div>
             <label for="people">Liczba osób</label>
             <input id="people" name="people" type="number" min="1" step="1" inputmode="numeric">
           </div>
-        </div>
-
-        <div class="field">
-          <label for="date">Planowany termin</label>
-          <input id="date" name="date" type="date">
+          <div>
+            <label for="date">Planowany termin</label>
+            <input id="date" name="date" type="date">
+          </div>
         </div>
 
         <div class="field">

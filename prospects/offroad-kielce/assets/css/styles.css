@@ -807,6 +807,30 @@ body::after {
   transition: border-color .2s ease, box-shadow .24s ease;
 }
 .form textarea { resize: vertical; min-height: 112px; }
+
+/* The native control renders a light-on-light arrow on a dark field, so it is
+   replaced with a drawn chevron. The extra right padding keeps the longest
+   option clear of it. */
+.form select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 44px;
+  cursor: pointer;
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--amber) 50%),
+    linear-gradient(135deg, var(--amber) 50%, transparent 50%);
+  background-position:
+    calc(100% - 22px) calc(50% + 2px),
+    calc(100% - 16px) calc(50% + 2px);
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+}
+/* The dropdown list itself is drawn by the OS — give it readable colours
+   rather than sand-on-white. */
+.form select option {
+  background: #16100A;
+  color: var(--sand);
+}
 .form input:focus, .form select:focus, .form textarea:focus {
   border-color: var(--amber);
   outline: none;
