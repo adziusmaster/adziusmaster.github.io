@@ -1,0 +1,1213 @@
+/* Agroturystyka Załawie — "dzień"
+   ---------------------------------------------------------------------------
+   Sibling to the Offroad Kielce build, one time of day later. That build is a
+   single unbroken dark field: amber on wet soil, a headlight sweeping the hero,
+   dust over everything. This one is the same hand at noon — ink on linen, sun
+   instead of headlamp, a weave instead of dust. The amber is the identical hex,
+   because it comes off the same owner's logo and it is the thread between two
+   businesses.
+
+   Three rules carry across from that build, inverted where they need to be:
+     · Nothing casts black. There the shadows bloom out of the dark; here they
+       are sun through a window — warm clay and amber, never neutral grey.
+     · Two fixed decorative layers sit on body::before / body::after, so every
+       section background stays transparent and lets them through.
+     · One thing moves, and slowly. There it is the headlight; here the sun
+       shifts across the hero. Nothing else loops.
+   --------------------------------------------------------------------------- */
+
+:root {
+  /* Ground */
+  --linen:  #F4EFE6;   /* the paper everything sits on */
+  --cream:  #FBF8F2;   /* raised surfaces */
+  --hemp:   #E4DBCA;   /* borders */
+
+  /* Ink */
+  --ink:      #221E19;
+  --ink-mute: rgba(34, 30, 25, 0.66);
+  --ink-dim:  rgba(34, 30, 25, 0.42);
+
+  /* Colour */
+  --pine:   #465A44;   /* the one cool note — the forest around the farm */
+  --amber:  #F9B321;   /* his logo's yellow. The same hex as Offroad Kielce. */
+  --clay:   #B4704A;   /* oak, brick, the warm end */
+  --sun:    #FFD87A;   /* the hottest point of the light */
+
+  --hair:        rgba(34, 30, 25, 0.1);
+  --hair-strong: rgba(180, 112, 74, 0.34);
+
+  --wash: linear-gradient(104deg, var(--sun), var(--amber) 48%, var(--clay));
+
+  /* Shadows are sunlight, not darkness — warm, and never neutral. */
+  --lift-rest: 0 18px 44px -32px rgba(122, 74, 42, 0.55);
+  --lift-hover: 0 26px 56px -30px rgba(122, 74, 42, 0.5),
+                0 0 34px -18px rgba(249, 179, 33, 0.55);
+
+  --display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --body:    'Inter', 'Helvetica Neue', Arial, sans-serif;
+
+  --wrap:   1200px;
+  --gutter: clamp(20px, 5vw, 56px);
+  --block:  clamp(68px, 9vw, 126px);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 110px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--linen);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 1rem;
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- The two fixed layers -------------------------------------------------
+   A linen weave and a wash of sun from the top right. Both sit behind
+   everything and never scroll, which is what keeps the page feeling like one
+   continuous sheet rather than a stack of bands. Section backgrounds stay
+   transparent so these show through; give one an opaque fill and the whole
+   effect collapses.                                                        */
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image:
+    repeating-linear-gradient(90deg, rgba(34, 30, 25, 0.028) 0 1px, transparent 1px 4px),
+    repeating-linear-gradient(0deg, rgba(34, 30, 25, 0.028) 0 1px, transparent 1px 4px);
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(1100px 680px at 88% -8%, rgba(249, 179, 33, 0.16), transparent 62%),
+    radial-gradient(760px 520px at 4% 104%, rgba(70, 90, 68, 0.09), transparent 66%);
+}
+
+img { max-width: 100%; display: block; }
+
+a { color: inherit; }
+
+::selection { background: rgba(249, 179, 33, 0.34); }
+
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: var(--ink);
+  color: var(--linen);
+  padding: 12px 18px;
+}
+.skip:focus { left: 12px; top: 12px; }
+
+/* --- Shared furniture ------------------------------------------------------ */
+
+.about__inner, .lets__inner, .rates__inner, .gallery__inner,
+.around__inner, .contact__inner, .footer__inner, .sub__inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.about, .lets, .rates, .gallery, .around, .contact, .sub {
+  position: relative;
+  background: transparent;
+}
+
+.section-title {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(2rem, 4.4vw, 3.1rem);
+  line-height: 1.04;
+  letter-spacing: -0.015em;
+  margin: 0 0 18px;
+}
+/* The rule under a title is a strip of sunlight, not a border. */
+.section-title::after {
+  content: '';
+  display: block;
+  width: 74px;
+  height: 4px;
+  margin-top: 18px;
+  background-image: var(--wash);
+}
+
+.lead {
+  font-size: clamp(1.02rem, 1.5vw, 1.14rem);
+  color: var(--ink-mute);
+  max-width: 56ch;
+}
+
+.eyebrow {
+  font-family: var(--body);
+  font-weight: 600;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--clay);
+  margin: 0 0 14px;
+}
+
+/* --- Buttons --------------------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: var(--body);
+  font-weight: 600;
+  font-size: 0.98rem;
+  text-decoration: none;
+  padding: 16px 30px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform .2s ease, box-shadow .28s ease,
+              background-color .2s ease, color .2s ease, border-color .2s ease;
+}
+.btn svg { width: 19px; height: 19px; fill: currentColor; }
+
+.btn--solid {
+  background-image: var(--wash);
+  color: #2A1B0C;
+  box-shadow: 0 0 30px -12px rgba(249, 179, 33, 0.9);
+}
+.btn--solid:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 48px -10px rgba(249, 179, 33, 0.95);
+}
+
+.btn--ghost {
+  color: var(--ink);
+  border-color: rgba(34, 30, 25, 0.24);
+  background: rgba(251, 248, 242, 0.7);
+}
+.btn--ghost:hover {
+  border-color: var(--clay);
+  color: var(--clay);
+  box-shadow: var(--lift-rest);
+}
+
+.btn--block { width: 100%; }
+
+/* --- Top bar --------------------------------------------------------------- */
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: rgba(244, 239, 230, 0.86);
+  backdrop-filter: blur(14px) saturate(1.1);
+  transition: background-color .28s ease, box-shadow .28s ease;
+}
+.topbar[data-stuck="true"], .topbar[data-open="true"] {
+  background: rgba(244, 239, 230, 0.96);
+  box-shadow: 0 1px 0 var(--hair), var(--lift-rest);
+}
+
+.topbar__inner {
+  position: relative;
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding: 14px var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* His logo is dark lettering on transparency, so on linen it simply sits
+   there. The Offroad build needs a sand plate behind the same mark; this is
+   the one place where the light ground costs nothing and gains something. */
+.brand { display: block; flex: 0 0 auto; }
+.brand img { width: 168px; height: auto; }
+
+.nav { display: flex; align-items: center; gap: 24px; }
+.nav a {
+  font-family: var(--body);
+  font-weight: 500;
+  font-size: 0.94rem;
+  text-decoration: none;
+  color: var(--ink-mute);
+  padding: 6px 0;
+  border-bottom: 2px solid transparent;
+  transition: color .18s ease, border-color .18s ease;
+}
+.nav a:hover { color: var(--ink); border-bottom-color: var(--amber); }
+.nav a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--amber); }
+
+.nav__phone {
+  border: 1px solid var(--hair-strong) !important;
+  color: var(--clay) !important;
+  font-weight: 600 !important;
+  padding: 10px 17px !important;
+  transition: box-shadow .24s ease, background-color .24s ease, color .24s ease;
+}
+.nav__phone:hover {
+  background-image: var(--wash);
+  color: #2A1B0C !important;
+  box-shadow: 0 0 28px -10px rgba(249, 179, 33, 0.85);
+}
+
+.burger {
+  display: none;
+  width: 44px; height: 44px;
+  background: none; border: 0; cursor: pointer; padding: 10px;
+}
+.burger span {
+  display: block; height: 2px; background: var(--ink);
+  margin: 5px 0; transition: transform .22s ease, opacity .22s ease;
+}
+.burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* --- Hero ------------------------------------------------------------------ */
+
+.hero {
+  position: relative;
+  min-height: min(86svh, 800px);
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  margin-top: -78px;
+  padding-top: 78px;
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* The photograph has to hand over to paper, or the headline sits on grass and
+   nothing is readable. The handover runs across rather than up: text on linen
+   at the left, the picture arriving at the right. A purely vertical wash would
+   have to bleach the whole photograph to make the middle legible. */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-image:
+    linear-gradient(97deg,
+      var(--linen) 0%,
+      rgba(244, 239, 230, 0.97) 34%,
+      rgba(244, 239, 230, 0.72) 54%,
+      rgba(244, 239, 230, 0.2) 82%,
+      rgba(244, 239, 230, 0.32) 100%),
+    linear-gradient(to top, var(--linen) 1%, rgba(244, 239, 230, 0) 30%);
+}
+
+/* The one thing that moves. The sun crossing the yard, eighteen seconds a
+   pass — slow enough that you notice it only if you stay. */
+.hero__sun {
+  position: absolute;
+  z-index: 1;
+  top: -18%;
+  right: -6%;
+  width: min(52vw, 640px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 216, 122, 0.5), rgba(249, 179, 33, 0.16) 44%, transparent 70%);
+  animation: drift 18s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+@keyframes drift {
+  from { transform: translate3d(0, 0, 0) scale(1); opacity: 0.85; }
+  to   { transform: translate3d(-9%, 5%, 0) scale(1.07); opacity: 1; }
+}
+
+.hero__inner {
+  position: relative;
+  z-index: 2;
+  max-width: var(--wrap);
+  margin-inline: auto;
+  width: 100%;
+  padding: 0 var(--gutter) clamp(44px, 6vw, 84px);
+}
+
+.hero__text { max-width: min(54%, 620px); }
+
+.hero h1 {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(2.4rem, 5vw, 4.1rem);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  margin: 0 0 22px;
+  text-wrap: balance;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--clay);
+}
+
+.hero__lead {
+  font-size: clamp(1.04rem, 1.6vw, 1.2rem);
+  color: var(--ink-mute);
+  max-width: 48ch;
+  margin: 0 0 32px;
+  padding-left: 18px;
+  border-left: 3px solid var(--amber);
+}
+
+.hero__actions { display: flex; flex-wrap: wrap; gap: 14px; }
+
+/* --- The band -------------------------------------------------------------
+   The Offroad build runs a yellow band under its hero carrying the strongest
+   thing it can say. This is the same component with this farm's version of
+   that: stay five days and the off-road is included. It is the one place the
+   two businesses touch in his own material, so it is also the only link
+   between them on the page.                                               */
+
+.band {
+  position: relative;
+  z-index: 2;
+  background-image: var(--wash);
+  color: #2A1B0C;
+}
+.band__inner {
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding: 20px var(--gutter);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 8px 16px;
+  text-align: center;
+}
+.band strong {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+  letter-spacing: -0.01em;
+}
+.band span { font-size: 0.97rem; opacity: 0.82; }
+.band a {
+  color: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 2px solid rgba(42, 27, 12, 0.4);
+  transition: border-color .18s ease;
+}
+.band a:hover { border-bottom-color: #2A1B0C; }
+
+/* --- About ----------------------------------------------------------------- */
+
+.about { padding-block: var(--block); }
+.about__columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 5vw, 76px);
+  align-items: start;
+}
+
+.facts { margin: 34px 0 0; }
+.facts > div {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 16px;
+  padding: 15px 0;
+  border-top: 1px solid var(--hair);
+}
+.facts > div:last-child { border-bottom: 1px solid var(--hair); }
+.facts dt {
+  font-weight: 600;
+  font-size: 0.86rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-dim);
+}
+.facts dd { margin: 0; }
+.facts a { color: var(--clay); text-decoration: none; border-bottom: 1px solid var(--hair-strong); }
+.facts a:hover { color: var(--ink); }
+
+/* --- The two lets ---------------------------------------------------------- */
+
+.lets { padding-block: var(--block); }
+
+.panels {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(20px, 3vw, 34px);
+  margin-top: clamp(34px, 4vw, 54px);
+}
+
+.panel {
+  position: relative;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: var(--cream);
+  border: 1px solid var(--hemp);
+  box-shadow: var(--lift-rest);
+  overflow: hidden;
+  transition: transform .24s ease, box-shadow .3s ease, border-color .24s ease;
+}
+.panel:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--lift-hover);
+  border-color: var(--hair-strong);
+}
+.panel__media { aspect-ratio: 4 / 3; overflow: hidden; }
+.panel__media img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform .5s ease;
+}
+.panel:hover .panel__media img { transform: scale(1.04); }
+
+.panel__body { padding: clamp(22px, 2.6vw, 32px); }
+.panel h3 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(1.4rem, 2.4vw, 1.8rem);
+  margin: 0 0 8px;
+  letter-spacing: -0.01em;
+}
+.panel p { margin: 0 0 16px; color: var(--ink-mute); }
+
+.panel__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 16px;
+  padding: 0;
+  list-style: none;
+}
+.panel__meta li {
+  font-size: 0.82rem;
+  font-weight: 500;
+  padding: 5px 11px;
+  border: 1px solid var(--hemp);
+  color: var(--ink-mute);
+  background: rgba(244, 239, 230, 0.6);
+}
+
+.panel__more {
+  font-weight: 600;
+  font-size: 0.94rem;
+  color: var(--clay);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.panel:hover .panel__more { color: var(--ink); }
+
+/* --- Rates ---------------------------------------------------------------- */
+
+.rates { padding-block: var(--block); }
+
+.ladder {
+  display: grid;
+  /* Four rungs, four tracks. auto-fit would lay out as many columns as the
+     container allows and leave the surplus showing as bare gap colour. */
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: clamp(34px, 4vw, 54px);
+  background: var(--hemp);
+  border: 1px solid var(--hemp);
+  box-shadow: var(--lift-rest);
+}
+.rung {
+  background: var(--cream);
+  padding: 26px 22px;
+  transition: background-color .2s ease;
+}
+.rung:hover { background: #FFFDF8; }
+.rung dt {
+  font-weight: 600;
+  font-size: 0.84rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-dim);
+  margin-bottom: 10px;
+}
+.rung dd {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(1.7rem, 3vw, 2.2rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.rung dd span { font-size: 0.94rem; font-family: var(--body); font-weight: 500; color: var(--ink-dim); }
+.rung--wide { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; }
+.rung--wide dt { margin-bottom: 0; }
+
+.rates__note {
+  margin: 18px 0 0;
+  font-size: 0.93rem;
+  color: var(--ink-mute);
+}
+
+/* --- Amenities ------------------------------------------------------------- */
+
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: clamp(14px, 2vw, 22px);
+  margin-top: clamp(34px, 4vw, 54px);
+  padding: 0;
+  list-style: none;
+}
+.tile-item {
+  padding: 22px 20px;
+  border: 1px solid var(--hemp);
+  background: rgba(251, 248, 242, 0.66);
+  transition: border-color .2s ease, box-shadow .26s ease, transform .2s ease;
+}
+.tile-item:hover {
+  border-color: var(--hair-strong);
+  box-shadow: var(--lift-rest);
+  transform: translateY(-2px);
+}
+.tile-item h3 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin: 0 0 6px;
+}
+.tile-item p { margin: 0; font-size: 0.93rem; color: var(--ink-mute); }
+
+/* --- Gallery --------------------------------------------------------------- */
+
+.gallery { padding-block: var(--block); }
+
+.mosaic {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(10px, 1.4vw, 16px);
+  margin-top: clamp(34px, 4vw, 54px);
+}
+.tile {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  border: 0;
+  padding: 0;
+  background: var(--hemp);
+  cursor: zoom-in;
+}
+.tile img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform .5s ease;
+}
+.tile:hover img { transform: scale(1.05); }
+.tile::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(249, 179, 33, 0);
+  transition: background-color .3s ease;
+}
+.tile:hover::after { background: rgba(249, 179, 33, 0.14); }
+.tile:focus-visible { outline: 3px solid var(--clay); outline-offset: 3px; }
+
+.lightbox {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  max-width: min(94vw, 1100px);
+  max-height: 92vh;
+}
+.lightbox::backdrop { background: rgba(34, 30, 25, 0.82); }
+.lightbox img { width: 100%; height: auto; }
+.lightbox__close {
+  position: absolute;
+  top: 10px; right: 10px;
+  width: 44px; height: 44px;
+  font-size: 1.6rem;
+  line-height: 1;
+  background: var(--linen);
+  color: var(--ink);
+  border: 0;
+  cursor: pointer;
+}
+
+/* --- Around ---------------------------------------------------------------- */
+
+.around { padding-block: var(--block); }
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: clamp(16px, 2.2vw, 26px);
+  margin-top: clamp(34px, 4vw, 54px);
+}
+.card {
+  border: 1px solid var(--hemp);
+  background: var(--cream);
+  box-shadow: var(--lift-rest);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.card__media { aspect-ratio: 3 / 2; overflow: hidden; background: var(--hemp); }
+.card__media img { width: 100%; height: 100%; object-fit: cover; }
+.card__body { padding: 20px; flex: 1; }
+.card h3 { font-family: var(--display); font-weight: 700; font-size: 1.15rem; margin: 0 0 6px; }
+.card p { margin: 0; font-size: 0.93rem; color: var(--ink-mute); }
+
+/* --- Contact --------------------------------------------------------------- */
+
+.contact { padding-block: var(--block); }
+.contact__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 5vw, 76px);
+  align-items: start;
+}
+
+.social {
+  display: flex;
+  gap: 24px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+.social a {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.94rem;
+  color: var(--ink-mute);
+  transition: color .2s ease;
+}
+.social svg { width: 22px; height: 22px; fill: currentColor; }
+.social a:hover { color: var(--clay); }
+
+/* --- Form ------------------------------------------------------------------ */
+
+.form {
+  position: relative;
+  background: var(--cream);
+  border: 1px solid var(--hemp);
+  box-shadow: var(--lift-rest);
+  padding: clamp(26px, 3.4vw, 42px);
+}
+.form::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 4px;
+  background-image: var(--wash);
+}
+
+.field { margin-bottom: 18px; }
+.field--pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+.form label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--ink-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 7px;
+}
+
+.form input,
+.form select,
+.form textarea {
+  width: 100%;
+  background: var(--linen);
+  border: 1px solid var(--hemp);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 1rem;
+  padding: 13px 15px;
+  border-radius: 0;
+  transition: border-color .2s ease, box-shadow .24s ease;
+}
+.form textarea { resize: vertical; min-height: 112px; }
+
+.form input:focus, .form select:focus, .form textarea:focus {
+  border-color: var(--clay);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(249, 179, 33, 0.22);
+}
+.form input[aria-invalid="true"] { border-color: #B3361F; }
+.form ::placeholder { color: var(--ink-dim); }
+
+.form__status {
+  margin: 14px 0 0;
+  font-size: 0.93rem;
+  color: var(--ink-mute);
+  min-height: 1.4em;
+}
+.form__status[data-state="error"] { color: #B3361F; }
+.form__status[data-state="ok"]    { color: var(--pine); }
+
+/* --- Consent --------------------------------------------------------------
+   The native box cannot be coloured, so it is taken out of the layout and a
+   plate is drawn in its place. It keeps focus, so the ring follows it.    */
+
+.field--consent { display: block; }
+.field--consent input {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0; border: 0;
+  overflow: hidden; clip-path: inset(50%);
+}
+.field--consent label {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  align-items: start;
+  margin-bottom: 0;
+  font-weight: 400;
+  font-size: 0.88rem;
+  text-transform: none;
+  letter-spacing: 0;
+  line-height: 1.55;
+  color: var(--ink-mute);
+  cursor: pointer;
+}
+.field--consent a { color: var(--clay); border-bottom: 1px solid var(--hair-strong); text-decoration: none; }
+.field--consent a:hover { color: var(--ink); }
+
+.tick {
+  width: 20px; height: 20px;
+  margin-top: 1px;
+  background: var(--linen);
+  border: 1px solid var(--hemp);
+  position: relative;
+  transition: border-color .2s ease, box-shadow .24s ease;
+}
+/* Drawn rather than typed: a glyph sits differently in every font fallback. */
+.tick::after {
+  content: '';
+  position: absolute;
+  left: 6px; top: 2px;
+  width: 5px; height: 10px;
+  border: solid var(--clay);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg) scale(0.4);
+  opacity: 0;
+  transition: opacity .16s ease, transform .16s ease;
+}
+.field--consent input:checked + label .tick::after { opacity: 1; transform: rotate(45deg) scale(1); }
+.field--consent input:checked + label .tick { border-color: var(--hair-strong); }
+.field--consent input:focus-visible + label .tick {
+  border-color: var(--clay);
+  box-shadow: 0 0 0 3px rgba(249, 179, 33, 0.22);
+}
+.field--consent input[aria-invalid="true"] + label .tick { border-color: #B3361F; }
+
+/* --- Panels shared by the dropdown and the calendar -----------------------
+   Both replace something the browser draws for itself in its own colours.
+   The native controls stay in the markup and keep their values; these are
+   only shown once site.js has marked the form enhanced.                   */
+
+.pop {
+  position: absolute;
+  z-index: 40;
+  top: calc(100% + 6px);
+  left: 0;
+  min-width: 100%;
+  background: var(--cream);
+  border: 1px solid var(--hair-strong);
+  box-shadow: var(--lift-hover);
+  padding: 6px;
+  margin: 0;
+}
+
+.combo { position: relative; }
+.combo__native { display: none; }
+
+.combo__button {
+  width: 100%;
+  text-align: left;
+  background: var(--linen);
+  border: 1px solid var(--hemp);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 1rem;
+  padding: 13px 44px 13px 15px;
+  cursor: pointer;
+  transition: border-color .2s ease, box-shadow .24s ease;
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--clay) 50%),
+    linear-gradient(135deg, var(--clay) 50%, transparent 50%);
+  background-position:
+    calc(100% - 22px) calc(50% + 2px),
+    calc(100% - 16px) calc(50% + 2px);
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+}
+.combo__button:focus-visible,
+.combo[data-open="true"] .combo__button {
+  border-color: var(--clay);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(249, 179, 33, 0.22);
+}
+/* Point the chevron up while the list is down. The two halves keep their
+   positions, so each flips to the lower triangle of its own box. */
+.combo[data-open="true"] .combo__button {
+  background-image:
+    linear-gradient(135deg, transparent 50%, var(--clay) 50%),
+    linear-gradient(45deg, var(--clay) 50%, transparent 50%);
+}
+
+.combo__list { list-style: none; }
+.combo__option {
+  padding: 11px 15px;
+  font-size: 0.97rem;
+  color: var(--ink-mute);
+  cursor: pointer;
+  transition: color .14s ease, background-color .14s ease;
+}
+.combo__option:hover, .combo__option[data-active="true"] {
+  background: rgba(249, 179, 33, 0.16);
+  color: var(--ink);
+}
+.combo__option[aria-selected="true"] {
+  color: var(--clay);
+  font-weight: 600;
+}
+
+/* --- Number stepper -------------------------------------------------------- */
+
+.stepper { display: flex; }
+.stepper input { text-align: center; }
+.form[data-enhanced] .stepper input::-webkit-outer-spin-button,
+.form[data-enhanced] .stepper input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.form[data-enhanced] .stepper input { -moz-appearance: textfield; appearance: textfield; }
+
+.stepper__btn {
+  flex: 0 0 46px;
+  background: rgba(244, 239, 230, 0.8);
+  border: 1px solid var(--hemp);
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.15rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: color .18s ease, border-color .18s ease, background-color .2s ease;
+}
+.stepper__btn:first-child { border-right: 0; }
+.stepper__btn:last-child  { border-left: 0; }
+.stepper__btn:hover { color: var(--clay); background: rgba(249, 179, 33, 0.14); }
+.stepper__btn:focus-visible {
+  outline: none;
+  border-color: var(--clay);
+  box-shadow: 0 0 0 3px rgba(249, 179, 33, 0.22);
+}
+.stepper__btn[disabled] { color: var(--ink-dim); cursor: default; background: rgba(244, 239, 230, 0.8); }
+
+/* --- Date picker ----------------------------------------------------------- */
+
+.picker { position: relative; }
+.form[data-enhanced] .picker input::-webkit-calendar-picker-indicator { display: none; }
+.form[data-enhanced] .picker input { padding-right: 48px; }
+
+.picker__toggle {
+  position: absolute;
+  right: 1px; top: 1px; bottom: 1px;
+  width: 44px;
+  display: grid;
+  place-items: center;
+  background: none;
+  border: 0;
+  color: var(--clay);
+  cursor: pointer;
+  transition: color .18s ease;
+}
+.picker__toggle svg { width: 19px; height: 19px; fill: currentColor; }
+.picker__toggle:hover { color: var(--ink); }
+.picker__toggle:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(249, 179, 33, 0.22);
+}
+
+.picker__panel { padding: 12px; width: max-content; right: 0; left: auto; }
+
+.cal__head {
+  display: grid;
+  grid-template-columns: 34px 1fr 34px;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+.cal__title {
+  text-align: center;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 0.98rem;
+}
+.cal__nav {
+  height: 34px;
+  background: none;
+  border: 1px solid var(--hemp);
+  color: var(--ink-mute);
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: color .18s ease, border-color .18s ease;
+}
+.cal__nav:hover { color: var(--clay); border-color: var(--hair-strong); }
+.cal__nav:focus-visible {
+  outline: none;
+  border-color: var(--clay);
+  box-shadow: 0 0 0 3px rgba(249, 179, 33, 0.22);
+}
+
+.cal__grid { display: grid; grid-template-columns: repeat(7, 38px); gap: 2px; }
+.cal__dow {
+  height: 26px;
+  display: grid;
+  place-items: center;
+  font-weight: 600;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-dim);
+}
+.cal__day {
+  height: 38px;
+  background: none;
+  border: 1px solid transparent;
+  color: var(--ink-mute);
+  font-family: var(--body);
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: color .14s ease, background-color .14s ease, border-color .14s ease;
+}
+.cal__day:hover { background: rgba(249, 179, 33, 0.16); color: var(--ink); }
+.cal__day:focus-visible {
+  outline: none;
+  border-color: var(--clay);
+  box-shadow: 0 0 0 3px rgba(249, 179, 33, 0.22);
+}
+.cal__day[disabled] { color: rgba(34, 30, 25, 0.2); cursor: default; background: none; }
+.cal__day[data-today="true"] { border-color: var(--hair-strong); color: var(--ink); }
+.cal__day[aria-pressed="true"] {
+  background-image: var(--wash);
+  border-color: transparent;
+  color: #2A1B0C;
+  font-weight: 700;
+}
+.cal__empty { height: 38px; }
+
+/* --- Footer ---------------------------------------------------------------- */
+
+.footer {
+  position: relative;
+  padding-block: clamp(40px, 5vw, 62px);
+  border-top: 1px solid var(--hair);
+}
+.footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 30px;
+}
+.footer__nav { display: flex; flex-wrap: wrap; gap: 8px 24px; }
+.footer__nav a {
+  text-decoration: none;
+  font-size: 0.93rem;
+  color: var(--ink-mute);
+  border-bottom: 1px solid transparent;
+  transition: color .18s ease, border-color .18s ease;
+}
+.footer__nav a:hover { color: var(--clay); border-bottom-color: var(--hair-strong); }
+.footer__copy, .footer__credit { margin: 0; font-size: 0.86rem; color: var(--ink-dim); }
+.footer__credit a { color: var(--ink-mute); }
+
+/* --- Subpage headers and documents ----------------------------------------- */
+
+.subhead {
+  position: relative;
+  overflow: hidden;
+  margin-top: -78px;
+  padding-top: 78px;
+}
+.subhead__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.subhead::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-image:
+    linear-gradient(to top, var(--linen) 3%, rgba(244, 239, 230, 0.84) 40%,
+                    rgba(244, 239, 230, 0.4) 100%);
+}
+.subhead__inner {
+  position: relative;
+  z-index: 2;
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding: clamp(66px, 9vw, 130px) var(--gutter) clamp(30px, 4vw, 54px);
+}
+.subhead h1 {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(2.2rem, 5.2vw, 3.8rem);
+  line-height: 1.02;
+  letter-spacing: -0.022em;
+  margin: 0;
+  max-width: 18ch;
+}
+.subhead h1 em { font-style: italic; color: var(--clay); }
+
+.back {
+  display: inline-block;
+  font-size: 0.86rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--clay);
+  text-decoration: none;
+  margin-bottom: 16px;
+}
+.back:hover { color: var(--ink); }
+
+.sub { padding-block: var(--block); }
+/* The intro paragraph belongs to the header above it, not to the section
+   below — a full block of air on both sides orphans it. */
+.subhead + .sub { padding-block: clamp(28px, 4vw, 48px) clamp(20px, 3vw, 34px); }
+.sub__columns {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: clamp(32px, 5vw, 70px);
+  align-items: start;
+}
+
+.doc { max-width: 74ch; }
+.doc h2 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(1.3rem, 2.4vw, 1.7rem);
+  margin: 2.2em 0 0.5em;
+  letter-spacing: -0.01em;
+}
+.doc h2:first-child { margin-top: 0; }
+.doc p, .doc li { color: var(--ink-mute); }
+.doc ul, .doc ol { padding-left: 1.2em; }
+.doc li { margin-bottom: 0.5em; }
+.doc a { color: var(--clay); }
+
+/* Placeholders the owner still has to fill. Loud on purpose. */
+mark.todo {
+  background: rgba(249, 179, 33, 0.42);
+  color: var(--ink);
+  padding: 1px 6px;
+  font-weight: 600;
+  font-size: 0.94em;
+}
+
+/* --- Responsive ------------------------------------------------------------ */
+
+/* The row needs a 958px viewport to hold the logo, seven items and the phone
+   button. Below that the logo cannot shrink (it is flex: 0 0 auto) so the bar
+   pushes the whole page sideways instead — hence the drawer starts here,
+   well above the 720px mobile breakpoint. */
+@media (max-width: 1000px) {
+  /* Seven items and a phone button no longer fit beside the logo below this
+     width — the logo loses the fight — so the drawer takes over here rather
+     than at the 720px mobile breakpoint. */
+  .burger { display: block; }
+
+  .nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: rgba(244, 239, 230, 0.98);
+    backdrop-filter: blur(10px);
+    border-block: 1px solid var(--hemp);
+    box-shadow: var(--lift-rest);
+    padding: 8px var(--gutter) 20px;
+    display: none;
+  }
+  .nav[data-open="true"] { display: flex; }
+  .nav a { padding: 15px 0; border-bottom: 1px solid var(--hemp); }
+  .nav a:hover { border-bottom-color: var(--hemp); }
+  /* In the drawer every row already has a rule under it, so the current page
+     is marked by colour alone. */
+  .nav a[aria-current="page"] { border-bottom-color: var(--hemp); }
+  .nav__phone {
+    margin-top: 14px;
+    text-align: center;
+    border-bottom: 1px solid var(--hair-strong) !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .about__columns, .panels, .contact__inner, .sub__columns {
+    grid-template-columns: 1fr;
+  }
+
+  .mosaic { grid-template-columns: repeat(2, 1fr); }
+
+}
+
+@media (max-width: 720px) {
+  html { scroll-padding-top: 88px; }
+
+  .brand img { width: 128px; }
+
+  .hero { min-height: min(88svh, 700px); }
+  .hero__actions .btn { flex: 1 1 auto; }
+  /* No room for a column of paper beside the picture, so the wash goes back to
+     running bottom-to-top and the text takes the full width. */
+  .hero__text { max-width: none; }
+  .hero::after {
+    background-image:
+      linear-gradient(to top, var(--linen) 4%, rgba(244, 239, 230, 0.95) 42%,
+                      rgba(244, 239, 230, 0.66) 78%, rgba(244, 239, 230, 0.5) 100%);
+  }
+
+  .facts > div { grid-template-columns: 1fr; gap: 2px; }
+  .field--pair { grid-template-columns: 1fr; }
+  .ladder { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .rung dd { font-size: clamp(1.5rem, 7vw, 1.9rem); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

@@ -43,3 +43,9 @@ in a prospect folder that would be awkward for the client to read.
 | Slug | Business | Live at |
 |---|---|---|
 | `offroad-kielce` | Offroad Kielce — 4×4 experiences, Kielce | [/prospects/offroad-kielce/](https://lechdigital.nl/prospects/offroad-kielce/) |
+| `zalawie` | Agroturystyka Załawie — farm stays, Brudzów | [/prospects/zalawie/](https://lechdigital.nl/prospects/zalawie/) |
+
+Those two share an owner, a phone number and the amber `#F9B321` taken off
+his logo — and nothing else. Each folder still stands alone: no shared CSS,
+no shared JS, no imports. The family resemblance is a design decision that
+happens to be repeated in two places, not a dependency.
