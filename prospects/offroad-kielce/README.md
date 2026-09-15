@@ -51,8 +51,9 @@ polityka-prywatnosci.html
 assets/
 ```
 
-`flota.html` and `faq.html` are **drafts** — see below. They can ship with the
-rest (they carry `noindex` and are not linked from the nav) or be held back.
+`flota.html` and `faq.html` are **unfinished** — see below. They are linked from
+the nav, so holding them back means pulling those two links out of all seven
+pages as well.
 
 The old site served the privacy policy from `/polityka-prywatnosci/`. Keep that
 URL alive with a redirect to `/polityka-prywatnosci.html`, or the existing link
@@ -77,22 +78,25 @@ Worth doing:
 - Fill in the `LocalBusiness` JSON-LD block in `index.html` (address, hours).
 - See `QUESTIONS.md` — the question list written for the owner, in Polish.
 
-## The two draft pages
+## The two unfinished pages
 
-`flota.html` and `faq.html` are built but unfinished. Each one:
+`flota.html` and `faq.html` are in the nav and reachable like any other page,
+but their content is not done. Each one:
 
-- carries `<meta name="robots" content="noindex, nofollow">`
-- is **not linked from any nav** — reachable only by typing the URL
-- opens with a loud `.draft` banner explaining what's missing
+- carries `<meta name="robots" content="noindex, nofollow">` — as every page in
+  this folder does, so this is not a mark of the page being unfinished
 - marks every unknown with a yellow `<mark class="todo">[PLACEHOLDER]</mark>`
+
+`flota.html` is the emptier of the two: it is a layout around vehicle details
+that don't exist yet — no marque, model, year or engine has been supplied.
 
 `faq.html` is a mix: answers without a yellow highlight come from the original
 site and are safe to publish as-is. The highlighted ones are guesses waiting to
 be replaced.
 
-**To publish either page:** fill the placeholders, delete the `<p class="draft">`
-banner and the `robots` meta, then add a nav link in *every* HTML file (the nav
-markup is duplicated per page — there is no templating).
+**To finish either page:** fill the placeholders. Nothing else is needed — the
+nav links are in place and the `.draft` banner is gone. The banner's CSS is
+still in `styles.css`, unused, for the next page that starts as scaffolding.
 
 For `faq.html`, add `FAQPage` JSON-LD at that point, but only covering questions
 whose answers are real. Structured data that doesn't match the visible page is
