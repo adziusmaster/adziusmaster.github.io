@@ -258,6 +258,7 @@ body::after {
   transition: color .18s ease, border-color .18s ease;
 }
 .nav a:hover { color: var(--amber); border-bottom-color: var(--amber); }
+.nav a[aria-current="page"] { color: var(--amber); border-bottom-color: var(--amber); }
 
 .nav__phone {
   border: 1px solid var(--hair-strong) !important;
@@ -1083,9 +1084,9 @@ body::after {
 }
 
 /* --- Draft banner ---------------------------------------------------------
-   These pages are scaffolding. The banner is deliberately loud so nobody
-   publishes them half-filled by accident. Remove it, and the noindex meta,
-   once the real content is in. See README.md.                              */
+   Unused right now — no page carries the banner. Kept for the next page that
+   starts as scaffolding: it is deliberately loud, so nobody publishes one
+   half-filled by accident. See README.md.                                  */
 
 .draft {
   position: relative;
@@ -1244,14 +1245,11 @@ body::after {
 
   .mosaic { grid-template-columns: repeat(2, 1fr); }
   .tile--wide { grid-column: span 2; grid-row: auto; aspect-ratio: 16 / 10; }
-}
 
-@media (max-width: 720px) {
-  html { scroll-padding-top: 92px; }
-
-  .brand { padding: 5px 8px; }
-  .brand img { width: 76px; }
-
+  /* The row holds seven items and the phone button. Below this width there is
+     no longer room for all of them beside the logo plate — the plate loses the
+     fight and the mark shrinks away — so the drawer takes over here rather
+     than at the 720px mobile breakpoint. */
   .burger { display: block; }
 
   .nav {
@@ -1271,11 +1269,21 @@ body::after {
   .nav[data-open="true"] { display: flex; }
   .nav a { padding: 15px 0; border-bottom: 1px solid var(--bark); }
   .nav a:hover { border-bottom-color: var(--bark); }
+  /* In the drawer every row already has a rule under it, so the current
+     page is marked by colour alone. */
+  .nav a[aria-current="page"] { border-bottom-color: var(--bark); }
   .nav__phone {
     margin-top: 14px;
     text-align: center;
     border-bottom: 1px solid var(--hair-strong) !important;
   }
+}
+
+@media (max-width: 720px) {
+  html { scroll-padding-top: 92px; }
+
+  .brand { padding: 5px 8px; }
+  .brand img { width: 76px; }
 
   .callbar { display: flex; }
   .footer { padding-bottom: calc(clamp(40px, 5vw, 62px) + 66px); }

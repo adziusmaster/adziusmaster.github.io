@@ -106,14 +106,19 @@ the original site, get it from the owner, or add it as a marked placeholder.
 | `index.html` | done |
 | `vouchery.html`, `imprezy-i-integracje.html`, `eventy-firmowe.html` | done |
 | `polityka-prywatnosci.html` | done bar the three placeholders |
-| `flota.html`, `faq.html` | **drafts** — `noindex`, unlinked, `.draft` banner, `[PLACEHOLDER]` marks |
+| `flota.html`, `faq.html` | in the nav, but `[PLACEHOLDER]` marks still showing |
 
 `faq.html` is deliberately mixed: answers *without* a yellow highlight come from
 the original site and are safe. Highlighted ones await the owner.
 
-To publish a draft page: fill the placeholders, delete the `<p class="draft">`
-banner and its `robots` meta, then add a nav link **in every HTML file** — the
-nav markup is duplicated per page, there is no templating.
+Both were drafts until the nav was unified: the `.draft` banners are gone and
+every page carries the same seven-item menu (`O nas · Oferta · Cennik · Flota ·
+Galeria · FAQ · Kontakt`). What's left is filling their placeholders. The
+`noindex` on them is the same `noindex` every page in the folder carries — not
+a sign of draft status. The current page is marked with `aria-current="page"`.
+
+The nav markup is duplicated per page, there is no templating, so any menu
+change means editing all seven HTML files.
 
 ### Conventions in this build
 
