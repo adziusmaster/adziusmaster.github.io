@@ -840,6 +840,272 @@ body::after {
 .form input[aria-invalid="true"] { border-color: var(--ember); }
 .form ::placeholder { color: rgba(239, 227, 204, 0.3); }
 
+/* --- Consent -------------------------------------------------------------
+   The native box cannot be coloured, so it is taken out of the layout and a
+   plate is drawn in its place. It keeps focus, so the ring follows it.    */
+
+.field--consent { display: block; }
+.field--consent input {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0; border: 0;
+  overflow: hidden; clip-path: inset(50%);
+}
+.field--consent label {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  align-items: start;
+  margin-bottom: 0;
+  font-family: var(--body);
+  font-weight: 400;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--sand-mute);
+  cursor: pointer;
+}
+.field--consent a { color: var(--sand); border-bottom: 1px solid var(--hair-strong); }
+.field--consent a:hover { color: var(--amber); }
+
+.tick {
+  width: 20px; height: 20px;
+  margin-top: 1px;
+  background: rgba(13, 10, 7, 0.8);
+  border: 1px solid var(--bark);
+  position: relative;
+  transition: border-color .2s ease, box-shadow .24s ease;
+}
+/* The stroke is drawn rather than typed: a glyph would sit differently in
+   every font fallback. */
+.tick::after {
+  content: '';
+  position: absolute;
+  left: 6px; top: 2px;
+  width: 5px; height: 10px;
+  border: solid var(--amber);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg) scale(0.4);
+  opacity: 0;
+  transition: opacity .16s ease, transform .16s ease;
+}
+.field--consent input:checked + label .tick::after { opacity: 1; transform: rotate(45deg) scale(1); }
+.field--consent input:checked + label .tick { border-color: var(--hair-strong); }
+.field--consent input:focus-visible + label .tick {
+  border-color: var(--amber);
+  box-shadow: 0 0 0 3px rgba(249, 179, 33, 0.18);
+}
+.field--consent input[aria-invalid="true"] + label .tick { border-color: var(--ember); }
+
+/* --- Panels shared by the dropdown and the calendar -----------------------
+   Both replace something the browser draws for itself in its own colours.
+   The native controls stay in the markup and keep their values; these are
+   only shown once site.js has marked the form enhanced.                   */
+
+.pop {
+  position: absolute;
+  z-index: 40;
+  top: calc(100% + 6px);
+  left: 0;
+  min-width: 100%;
+  background: var(--pit);
+  border: 1px solid var(--hair-strong);
+  box-shadow: var(--glow-rest);
+  padding: 6px;
+  margin: 0;
+}
+
+/* --- Dropdown ------------------------------------------------------------- */
+
+.combo { position: relative; }
+.combo__native { display: none; }
+
+.combo__button {
+  width: 100%;
+  text-align: left;
+  background: rgba(13, 10, 7, 0.8);
+  border: 1px solid var(--bark);
+  color: var(--sand);
+  font-family: var(--body);
+  font-size: 1rem;
+  padding: 13px 44px 13px 15px;
+  cursor: pointer;
+  transition: border-color .2s ease, box-shadow .24s ease;
+  /* The same drawn chevron the native select carried. */
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--amber) 50%),
+    linear-gradient(135deg, var(--amber) 50%, transparent 50%);
+  background-position:
+    calc(100% - 22px) calc(50% + 2px),
+    calc(100% - 16px) calc(50% + 2px);
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+}
+.combo__button:focus-visible,
+.combo[data-open="true"] .combo__button {
+  border-color: var(--amber);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(249, 179, 33, 0.18);
+}
+/* Point the chevron up while the list is down. The two halves keep their
+   positions, so each one flips to the lower triangle of its own box. */
+.combo[data-open="true"] .combo__button {
+  background-image:
+    linear-gradient(135deg, transparent 50%, var(--amber) 50%),
+    linear-gradient(45deg, var(--amber) 50%, transparent 50%);
+}
+
+.combo__list { list-style: none; }
+.combo__option {
+  padding: 11px 15px;
+  font-size: 0.97rem;
+  color: var(--sand-mute);
+  cursor: pointer;
+  transition: color .14s ease, background-color .14s ease;
+}
+.combo__option:hover, .combo__option[data-active="true"] {
+  background: rgba(249, 179, 33, 0.1);
+  color: var(--sand);
+}
+.combo__option[aria-selected="true"] {
+  color: var(--amber);
+  font-family: var(--display);
+  font-weight: 600;
+}
+
+/* --- Number stepper ------------------------------------------------------- */
+
+.stepper { display: flex; }
+.stepper input { text-align: center; }
+/* The native arrows are tiny and drawn in the browser's own grey. */
+.form[data-enhanced] .stepper input::-webkit-outer-spin-button,
+.form[data-enhanced] .stepper input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.form[data-enhanced] .stepper input { -moz-appearance: textfield; appearance: textfield; }
+
+.stepper__btn {
+  flex: 0 0 46px;
+  background: rgba(22, 16, 10, 0.5);
+  border: 1px solid var(--bark);
+  color: var(--sand);
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: color .18s ease, border-color .18s ease, box-shadow .24s ease;
+}
+.stepper__btn:first-child { border-right: 0; }
+.stepper__btn:last-child  { border-left: 0; }
+.stepper__btn:hover {
+  color: var(--amber);
+  box-shadow: inset 0 0 26px -16px rgba(249, 179, 33, 0.9);
+}
+.stepper__btn:focus-visible {
+  outline: none;
+  border-color: var(--amber);
+  box-shadow: 0 0 0 3px rgba(249, 179, 33, 0.18);
+}
+.stepper__btn[disabled] { color: var(--sand-dim); cursor: default; box-shadow: none; }
+
+/* --- Date picker ---------------------------------------------------------- */
+
+.picker { position: relative; }
+/* Suppress the browser's own calendar button — ours opens in its place. */
+.form[data-enhanced] .picker input::-webkit-calendar-picker-indicator { display: none; }
+.form[data-enhanced] .picker input { padding-right: 48px; }
+
+.picker__toggle {
+  position: absolute;
+  right: 1px; top: 1px; bottom: 1px;
+  width: 44px;
+  display: grid;
+  place-items: center;
+  background: none;
+  border: 0;
+  color: var(--amber);
+  cursor: pointer;
+  transition: color .18s ease;
+}
+.picker__toggle svg { width: 19px; height: 19px; fill: currentColor; }
+.picker__toggle:hover { color: var(--flare); }
+.picker__toggle:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(249, 179, 33, 0.18);
+}
+
+.picker__panel { padding: 12px; width: max-content; right: 0; left: auto; }
+
+.cal__head {
+  display: grid;
+  grid-template-columns: 34px 1fr 34px;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+.cal__title {
+  text-align: center;
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--sand);
+}
+.cal__nav {
+  height: 34px;
+  background: none;
+  border: 1px solid var(--bark);
+  color: var(--sand-mute);
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: color .18s ease, border-color .18s ease;
+}
+.cal__nav:hover { color: var(--amber); border-color: var(--hair-strong); }
+.cal__nav:focus-visible {
+  outline: none;
+  border-color: var(--amber);
+  box-shadow: 0 0 0 3px rgba(249, 179, 33, 0.18);
+}
+
+.cal__grid { display: grid; grid-template-columns: repeat(7, 38px); gap: 2px; }
+.cal__dow {
+  height: 26px;
+  display: grid;
+  place-items: center;
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--sand-dim);
+}
+.cal__day {
+  height: 38px;
+  background: none;
+  border: 1px solid transparent;
+  color: var(--sand-mute);
+  font-family: var(--body);
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: color .14s ease, background-color .14s ease, border-color .14s ease;
+}
+.cal__day:hover { background: rgba(249, 179, 33, 0.1); color: var(--sand); }
+.cal__day:focus-visible {
+  outline: none;
+  border-color: var(--amber);
+  box-shadow: 0 0 0 3px rgba(249, 179, 33, 0.18);
+}
+.cal__day[disabled] { color: rgba(239, 227, 204, 0.16); cursor: default; background: none; }
+.cal__day[data-today="true"] { border-color: var(--hair-strong); color: var(--sand); }
+.cal__day[aria-pressed="true"] {
+  background-image: var(--beam);
+  border-color: transparent;
+  color: #1A1206;
+  font-weight: 700;
+}
+.cal__empty { height: 38px; }
+
 .form__status {
   margin: 14px 0 0;
   font-size: 0.93rem;

@@ -137,6 +137,27 @@ rather than placeholder prose.
   No other change is needed — `assets/js/site.js` already handles success,
   failure, and the disabled-button state.
 
+Submitting requires the acknowledgement box — an acknowledgement rather than a
+consent on purpose, because section 3 of `polityka-prywatnosci.html` gives
+art. 6(1)(b) RODO as the basis for answering an enquiry, and asking for consent
+on top would name a basis this build does not rely on. Nothing stores the tick:
+it travels with the enquiry as `Polityka prywatności: przyjęta do wiadomości`,
+the record that the visitor was told what the data is for. Section 2 of the
+policy already lists exactly the fields this form collects.
+
+### The controls that draw themselves
+
+A `<select>` popup and the calendar of an `<input type="date">` are browser
+chrome. No stylesheet reaches either, so on a dark amber form they arrive grey
+and square. `site.js` therefore draws its own dropdown, calendar and number
+stepper over the native controls — which stay in the markup, keep their `name`,
+and are what actually submits. Nothing about `FormData` changes, and with JS off
+the visitor gets the plain native controls, which is no loss.
+
+The styles that hide native affordances (spinner arrows, the calendar button)
+are all scoped under `.form[data-enhanced]`, an attribute only `site.js` sets.
+Keep them scoped, or a visitor without JS loses the control entirely.
+
 ## The hero clip
 
 `assets/video/header.mp4` is 8.8 MB for about five seconds, so it is treated as
