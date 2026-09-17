@@ -570,6 +570,7 @@ a.card:focus-visible::after { opacity: 1; }
 
 .card-top {
   display: flex;
+  flex-wrap: wrap;
   gap: 12px;
   align-items: baseline;
   justify-content: space-between;
@@ -584,7 +585,15 @@ a.card:focus-visible::after { opacity: 1; }
   padding-top: 4px;
 }
 
-/* status tags */
+/* status tags — a card may carry two, so they sit in their own flex box and
+   .card-top keeps exactly two children for its space-between to work against */
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
 .tag {
   flex: 0 0 auto;
   font-family: var(--mono);
@@ -596,12 +605,29 @@ a.card:focus-visible::after { opacity: 1; }
   white-space: nowrap;
 }
 
+/* The ramp reads loudest, so it stays on the one that matters most: nothing to
+   pay, ever. Magenta and violet carry the other two states, and they bloom
+   rather than cast, like everything else here. Text colour on each is whichever
+   of base/paper clears 4.5:1 against that background. */
 .tag-free {
   color: var(--base);
   background-image: var(--sun-ramp);
   box-shadow: 0 0 24px -7px rgba(255, 122, 47, 0.8);
 }
 
+.tag-live {
+  color: var(--base);
+  background-color: var(--magenta);
+  box-shadow: 0 0 24px -7px rgba(216, 68, 127, 0.75);
+}
+
+.tag-source {
+  color: var(--paper);
+  background-color: var(--violet);
+  box-shadow: 0 0 24px -7px rgba(139, 60, 190, 0.75);
+}
+
+/* Outlined is the "not yet" state — a thing you cannot have is not worth shouting. */
 .tag-quiet {
   color: var(--muted);
   border: 1px solid var(--hairline-strong);
