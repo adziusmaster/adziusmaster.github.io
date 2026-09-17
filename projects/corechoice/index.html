@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CoreChoice — decide without deciding alone</title>
-<meta name="description" content="Take the Big Five personality test once, free and permanently. Then get decision advice shaped by how you actually decide — not advice in general. Android app, entering closed testing.">
+<meta name="description" content="Take the Big Five personality test once, free and permanently. Then get decision advice shaped by how you actually decide — not advice in general. Android app, now in closed testing on Google Play.">
 <link rel="canonical" href="https://lechdigital.nl/projects/corechoice/">
 <meta name="author" content="Andrzej Lech">
 <meta name="color-scheme" content="dark">
@@ -58,9 +58,10 @@
         <em>you</em> decide, rather than advice in general.
       </p>
       <div class="project-links">
+        <a href="https://play.google.com/apps/testing/com.adziusmaster.corechoice" rel="noopener">Tester opt-in &rarr;</a>
         <span class="project-note">
-          <strong>Under construction.</strong> The app is built and running; it enters closed
-          testing on Google Play shortly. Android.
+          <strong>In closed testing</strong> on Google Play &mdash; Android, invitation only for
+          now. The test and your full result are free, and stay free.
         </span>
       </div>
     </div>
@@ -107,6 +108,13 @@
           &mdash; what persists is a coin balance against a random identifier, a salted IP hash
           for abuse limits, and a usage row for cost tracking. There is no account, no email
           and no sign-in anywhere in the app.
+        </p>
+        <p>
+          The third rule is the one nobody notices when it is working: a coin is never lost to a
+          failure of ours. Every path that spends one puts it back if anything downstream falls
+          over &mdash; the model timing out, a response that cannot be parsed, even the phone
+          hanging up mid-request. Two bugs of exactly that shape surfaced during the build,
+          which is why it is now held in place by tests rather than good intentions.
         </p>
         <p>
           The measurement is the real thing: the fifty-item IPIP Big-Five Factor Markers, which
