@@ -107,7 +107,7 @@ Personal text including the verbatim Coolblue sentence and the values-by-fact pa
 
 - [ ] **Step 4: `[ 05 ] CONTACT` and footer**
 
-GitHub `adziusmaster`, email `adzius.lech@gmail.com`. Footer carries the Lech Digital line and the year.
+GitHub `adziusmaster`, email `andrzej@lechdigital.nl`. Footer carries the Lech Digital line and the year.
 
 - [ ] **Step 5: Verify**
 
