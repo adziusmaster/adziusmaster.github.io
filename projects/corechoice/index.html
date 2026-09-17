@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CoreChoice — decide without deciding alone</title>
+<meta name="description" content="Take the Big Five personality test once, free and permanently. Then get decision advice shaped by how you actually decide — not advice in general. Android app, entering closed testing.">
+<link rel="canonical" href="https://lechdigital.nl/projects/corechoice/">
+<meta name="author" content="Andrzej Lech">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0A0D0D">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Lech Digital">
+<meta property="og:locale" content="en_GB">
+<meta property="og:url" content="https://lechdigital.nl/projects/corechoice/">
+<meta property="og:title" content="CoreChoice — decide without deciding alone">
+<meta property="og:description" content="A free Big Five test, then advice written for how you actually decide. No paywall on the result.">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CoreChoice — decide without deciding alone">
+<meta name="twitter:description" content="A free Big Five test, then advice written for how you actually decide.">
+
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="stylesheet" href="../../assets/css/site.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead-outer">
+  <div class="wrap masthead">
+    <a class="mark" href="../../index.html">&#9670;&nbsp; A. Lech</a>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="../../index.html#work">Work</a></li>
+        <li><a href="../../index.html#garage">Garage</a></li>
+        <li><a href="../../index.html#about">About</a></li>
+        <li><a href="../../index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <span class="mono coords">Schiedam &nbsp;51.92&deg;N 4.39&deg;E</span>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="project-head">
+    <div class="wrap">
+      <span class="section-label">[ Project ] &nbsp;CoreChoice</span>
+      <h1>CoreChoice</h1>
+      <p class="lede">
+        Take the Big Five personality test once &mdash; free, and free to keep. Then bring it
+        the decision you have been turning over for a week, and get advice written for how
+        <em>you</em> decide, rather than advice in general.
+      </p>
+      <div class="project-links">
+        <span class="project-note">
+          <strong>Under construction.</strong> The app is built and running; it enters closed
+          testing on Google Play shortly. Android.
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <span class="section-label">[ 01 ] &nbsp;Why</span>
+      <h2>The problem is not a lack of options</h2>
+      <div class="prose">
+        <p>
+          People who agonise over decisions are rarely short of information. They have read the
+          reviews, made the spreadsheet, asked three friends and received three answers. What
+          they are short of is a way to stop &mdash; and every extra option makes stopping
+          harder, not easier.
+        </p>
+        <p>
+          So CoreChoice does not hand you a longer list. It asks who you are first, then gives
+          one recommendation with the reasoning laid out, and tells you plainly when a decision
+          is genuinely too close to call. The answer screen closes with a line that is doing
+          more work than it looks: <em>you can sit with this, it will be here in the
+          morning</em>. That is the permission a maximiser never gives themselves.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <span class="section-label">[ 02 ] &nbsp;What&rsquo;s interesting</span>
+      <h2>The result is free, and that is structural</h2>
+      <div class="prose">
+        <p>
+          The usual shape of a personality app is ten minutes of questions followed by a
+          paywall standing between you and your own answers. CoreChoice does not do that, and
+          it is not a promise in the marketing copy &mdash; the screen that shows your profile
+          has no dependency on the coin ledger at all, so a paywall could not be added there
+          without rewriting it. The result renders on a phone with no signal, and finishing the
+          test adds five free analyses on top.
+        </p>
+        <p>
+          Nothing you type is stored on the server. The dilemma and your trait scores travel in
+          the request body, are held in memory long enough to build the prompt, and are gone
+          &mdash; what persists is a coin balance against a random identifier, a salted IP hash
+          for abuse limits, and a usage row for cost tracking. There is no account, no email
+          and no sign-in anywhere in the app.
+        </p>
+        <p>
+          The measurement is the real thing: the fifty-item IPIP Big-Five Factor Markers, which
+          are public domain, with the reverse-keyed items kept honest by tests that fail if the
+          keying drifts. The scores never reach you as percentages either. A number implies
+          something is missing out of a hundred, and to someone already prone to over-deciding,
+          &ldquo;75%&rdquo; reads as a one-in-four chance of ruining their life &mdash; so four
+          plain labels replace it, and a trait is drawn as a point on a line rather than a bar
+          that looks part-empty.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <span class="section-label">[ 03 ] &nbsp;Stack</span>
+      <div class="stack-row">
+        <span>.NET 10</span>
+        <span>.NET MAUI</span>
+        <span>ASP.NET Core</span>
+        <span>EF Core + SQLite</span>
+        <span>Gemini</span>
+        <span>Docker + Caddy</span>
+      </div>
+      <p style="margin-top:34px">
+        <a class="back" href="privacy/">Privacy policy</a>
+        &nbsp;&middot;&nbsp;
+        <a class="back" href="../../index.html#work">&larr; &nbsp;All work</a>
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap mono">
+    <span>Lech Digital &mdash; Schiedam</span>
+    <span>Built by hand. No trackers, no cookies, no JavaScript.</span>
+  </div>
+</footer>
+
+</body>
+</html>
