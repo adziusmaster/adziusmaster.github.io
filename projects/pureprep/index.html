@@ -47,7 +47,7 @@
   "description": "PurePrep turns any recipe link into just the title, ingredients and steps. No ads, no life stories, no pop-ups.",
   "applicationCategory": "LifestyleApplication",
   "operatingSystem": "Android",
-  "sameAs": ["https://pureprep.lechdigital.nl"],
+  "sameAs": ["https://play.google.com/store/apps/details?id=com.adziusmaster.pureprep"],
   "author": { "@type": "Person", "name": "Andrzej Lech", "url": "https://lechdigital.nl/" }
 }
 </script>
@@ -83,8 +83,8 @@
         no pop-ups.
       </p>
       <div class="project-links">
-        <a href="https://pureprep.lechdigital.nl" rel="noopener">Join the open beta &rarr;</a>
-        <span class="project-note">Android app &mdash; free during the beta.</span>
+        <a href="https://play.google.com/store/apps/details?id=com.adziusmaster.pureprep" rel="noopener">Get it on Google Play &rarr;</a>
+        <span class="project-note">Out now on Android &mdash; free to install, no account; Smart Credits are optional.</span>
       </div>
     </div>
   </section>
@@ -133,9 +133,10 @@
           with per-origin rate limits and salted IP hashes instead of stored addresses.
         </p>
         <p>
-          The waitlist behind the landing page is the same idea in miniature: one
-          de-duplicated email, a tight rate limit, and a salted hash for triage &mdash;
-          served same-origin so there&rsquo;s no third-party form vendor in the loop.
+          Going to production is what made that non-negotiable. Every purchase is confirmed
+          with Google&rsquo;s Developer API before a single credit is granted, and the server
+          will not boot in production unless that verification is configured &mdash; there is
+          no quiet fallback that takes the client&rsquo;s word for it.
         </p>
       </div>
     </div>
