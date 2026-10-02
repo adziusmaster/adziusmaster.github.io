@@ -576,6 +576,12 @@ a.card:focus-visible::after { opacity: 1; }
   justify-content: space-between;
 }
 
+/* The flagship takes the whole first row. Same card, same bloom — only more
+   room: a larger title and a line length that suits the width. */
+.card-feature { grid-column: 1 / -1; padding: 24px 24px 20px; }
+.card-feature h3 { font-size: clamp(1.6rem, 3.4vw, 2.2rem); }
+.card-feature p:not(.stack) { font-size: 1rem; max-width: 62ch; }
+
 .card h3 { color: var(--paper); }
 .card p { color: var(--muted); font-size: 0.94rem; line-height: 1.62; margin: 0; }
 
