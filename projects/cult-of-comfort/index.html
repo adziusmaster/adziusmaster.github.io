@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cult of Comfort — Andrzej Lech</title>
+<meta name="description" content="Cult of Comfort: a mobile base-builder and tower defence about a time traveller stuck around the year 950, building a spa out of junk. What building it taught me. Android, in development.">
+<link rel="canonical" href="https://lechdigital.nl/projects/cult-of-comfort/">
+<meta name="author" content="Andrzej Lech">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0F0A0D">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Lech Digital">
+<meta property="og:locale" content="en_GB">
+<meta property="og:url" content="https://lechdigital.nl/projects/cult-of-comfort/">
+<meta property="og:title" content="Cult of Comfort — a village game, and what it taught me">
+<meta property="og:description" content="A mobile base-builder and tower defence where the server replays every raid to check it. Android, in development.">
+
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/barlow-condensed-700-3.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/archivo-400-3.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/space-mono-400-3.woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/site.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoGame",
+  "name": "Cult of Comfort",
+  "url": "https://lechdigital.nl/projects/cult-of-comfort/",
+  "description": "A mobile base-builder and tower defence: a time traveller stuck around the year 950 builds an absurdly comfortable spa out of junk, and defends it at night.",
+  "gamePlatform": "Android",
+  "author": { "@type": "Person", "name": "Andrzej Lech", "url": "https://lechdigital.nl/" }
+}
+</script>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead-outer">
+  <div class="wrap masthead">
+    <a class="mark" href="../../index.html">&#9670;&nbsp; A. Lech</a>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="../../index.html#work">Work</a></li>
+        <li><a href="../../index.html#garage">Garage</a></li>
+        <li><a href="../../index.html#about">About</a></li>
+        <li><a href="../../index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <span class="mono coords">Schiedam &nbsp;51.92&deg;N 4.39&deg;E</span>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="project-head">
+    <div class="wrap">
+      <span class="section-label">[ Project ] &nbsp;Cult of Comfort</span>
+      <h1>Cult of Comfort</h1>
+      <p class="lede">
+        A cynical time traveller is stuck around the year 950 and does the only sensible thing:
+        builds an absurdly comfortable spa out of junk and basic physics. By day you build the
+        village; at night the neighbours come to take it, and your towers hold the road.
+      </p>
+      <div class="project-links">
+        <a href="privacy/">Privacy policy &rarr;</a>
+        <span class="project-note">
+          <strong>In development</strong> &mdash; Android. Not on Google Play yet; every change is
+          tried on my own Pixel before it counts as done.
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <span class="section-label">[ 01 ] &nbsp;Why</span>
+      <h2>I wanted to know how the timers are made</h2>
+      <div class="prose">
+        <p>
+          I play mobile base-builders. They are machines for coming back: a building that
+          finishes tomorrow, a raid with a warning on it, a reward for the seventh day in a row.
+          Every app I had built so far was a tool you open, use and close. I wanted to build the
+          other kind, and see from the inside how the machine works.
+        </p>
+        <p>
+          So I started on 9 October 2026 with a design document: the core loop, the economy, the
+          tech tree, the map and the story, before any code. By the end of that first day it ran
+          on my phone.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <span class="section-label">[ 02 ] &nbsp;What I learned</span>
+      <h2>Trust nothing the phone says</h2>
+      <div class="prose">
+        <p>
+          <strong>A game is a court case.</strong> A raid is played on the phone, often offline,
+          and the reward depends on how it went, so the phone cannot be believed. The whole
+          battle is a pure, deterministic C# library, shared by the Unity client and the server:
+          fixed-point maths only, a 20&nbsp;Hz tick, a seeded random generator, a stable order for
+          everything. The phone sends only what you did. The server replays the night from that
+          and its result is the one that counts. It takes milliseconds, and replays come for free.
+        </p>
+        <p>
+          <strong>Determinism has to be checked from day one.</strong> The bugs are quiet: a
+          dictionary walked in a different order, a float that slipped into the state. On the
+          first day I checked that a night ends in the same hash on the phone as on the server,
+          and the game still shows that check in Settings after every night.
+        </p>
+        <p>
+          <strong>Features grow faster than understanding.</strong> The first person who played
+          it without me had no idea what to do. The screen was crowded, the to-do note took a
+          big part of it, and features had been arriving faster than the game explained them. The next
+          piece of work was about taking things away: one clear next step, and the rest unlocked
+          when it matters.
+        </p>
+        <p>
+          <strong>Time is a design material.</strong> Builds that finish in seconds feel like a
+          prototype; at the top they now take days. Long timers, a weekly festival and a
+          &ldquo;welcome back&rdquo; for what the village made while you were away are what make
+          the evening check-in worth it. Most of that I learned by looking closely at the games I
+          play, not by inventing it.
+        </p>
+        <p>
+          <strong>Everything is code, art included.</strong> The Unity scene, the HUD and every
+          model are built from code: the models from Blender scripts, the HUD in UI Toolkit. A
+          change to a tower is a diff I can read and review, not a binary in an editor.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <span class="section-label">[ 03 ] &nbsp;Stack</span>
+      <div class="stack-row">
+        <span>Unity 6.3</span>
+        <span>C#</span>
+        <span>.NET 10</span>
+        <span>SQLite</span>
+        <span>Blender</span>
+        <span>Hetzner</span>
+        <span>1,000+ tests</span>
+      </div>
+      <p style="margin-top:34px"><a class="back" href="../../index.html#work">&larr; &nbsp;All work</a></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap mono">
+    <span>Lech Digital &mdash; Schiedam</span>
+    <span>Built by hand. No trackers, no cookies, no JavaScript.</span>
+  </div>
+</footer>
+
+</body>
+</html>
