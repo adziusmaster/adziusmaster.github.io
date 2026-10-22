@@ -51,7 +51,7 @@
       <p class="lede">Coo &mdash; Baby Log &amp; Sleep is a baby tracker for parents. What you log in
       it is health information about a child, so this policy says exactly where it is kept,
       and what changes when you sign in and choose to share it with your family.</p>
-      <p class="mono">Last updated 6 October 2026</p>
+      <p class="mono">Last updated 22 October 2026</p>
     </div>
 
     <section class="section">
@@ -61,6 +61,7 @@
           <li>Coo works <strong>without an account</strong>, and until you choose to share, everything you enter <strong>stays on your phone</strong>. We cannot see it.</li>
           <li>Android backup is <strong>switched off</strong> for Coo, so your log is not copied into your Google backup.</li>
           <li>There are <strong>no ads, no analytics, no crash-reporting service, no trackers</strong> and no third-party SDKs that collect data.</li>
+          <li>The <strong>Baby Advisor</strong> is optional. Only when you ask it something, and only after you agree, your question and a summary of your log go to <strong>Google&rsquo;s Gemini AI</strong> to write the answer. We do not keep your questions or the answers.</li>
           <li>Signing in is <strong>optional</strong>. If you sign in and <strong>agree to share</strong>, your family&rsquo;s log is stored on our server in Germany, and only then. You can invite another parent to your family, and they see and add to the same log.</li>
         </ul>
       </div>
@@ -96,7 +97,8 @@
         <ul>
           <li>We do not show advertisements.</li>
           <li>We do not use analytics, a crash-reporting service or trackers.</li>
-          <li>We do not include third-party SDKs that collect data.</li>
+          <li>We do not include third-party SDKs that collect data. Google services we use for a feature you choose
+          (sign-in, the Advisor, purchases) are described below.</li>
           <li>We do not sell or share your data.</li>
         </ul>
       </div>
@@ -148,6 +150,52 @@
     </section>
 
     <section class="section">
+      <p class="section-label">The Baby Advisor</p>
+      <div class="prose">
+        <p>The Advisor tab answers questions about your baby with the help of Google&rsquo;s Gemini AI. It needs you to
+        be signed in and sharing. Before your first question, Coo tells you what is sent and asks for your
+        agreement; if you choose &ldquo;Not now&rdquo;, nothing is sent.</p>
+        <p>When you ask, the app sends to our server: your question, the earlier messages of that conversation (at most
+        the last ten), the app&rsquo;s language, your family&rsquo;s time zone, and a summary of the last seven days of
+        your log (the times, durations and amounts of feeds, sleep, diapers and pumping, without notes). Our server
+        adds your baby&rsquo;s first name and age in weeks, and sends all of this to Google&rsquo;s Gemini API, which
+        writes the answer, under the <a href="https://ai.google.dev/gemini-api/terms">Gemini API terms</a>. Google
+        LLC may process this data outside the EU.</p>
+        <p>Our server does not store your questions, the summary or the answers. It keeps only a count of how many
+        questions each account asked per day, to apply the daily limit; the count is deleted with your account.
+        Your conversations are kept on your phone, and you can delete them in the Advisor&rsquo;s history.</p>
+        <p>The answers are general information, not medical advice. If you are worried about your baby, contact your
+        doctor; in an emergency, call 112.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <p class="section-label">Your baby&rsquo;s avatar</p>
+      <div class="prose">
+        <p>You can give your baby a picture in the app: one of the built-in drawings, a photo, or (with Coo Premium) an
+        illustration drawn from a photo.</p>
+        <p><strong>A photo</strong> you choose, cropped as you set it, is kept on your phone and, if you share with a
+        family, stored on our server and shown to the members of your family. <strong>For an illustration</strong>,
+        the photo is sent to our server and on to Google&rsquo;s Gemini API, which draws it; that photo is not kept,
+        and the drawing is stored on our server and shown to your family. Choosing another picture, or none,
+        replaces it; it is deleted with the family.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <p class="section-label">Coo Premium and purchases</p>
+      <div class="prose">
+        <p>Coo Premium is an optional subscription, bought and billed through Google Play. Google handles the payment;
+        we never see your card or bank details. When you subscribe, the app sends us the purchase token Google Play
+        gives it, and our server asks Google Play whether it is valid. We store the purchase token, the product, its
+        status and expiry date, the family it was bought for and the account that bought it, so that everyone in
+        your family gets Premium. This is kept while the subscription exists and is deleted with the family or the
+        buyer&rsquo;s account.</p>
+        <p>To stop paying, cancel the subscription in Google Play: deleting your Coo account does not cancel it.</p>
+      </div>
+    </section>
+
+    <section class="section">
       <p class="section-label">Legal basis</p>
       <div class="prose">
         <p>Under the GDPR, we process your account and family data because it is needed to provide
@@ -157,6 +205,9 @@
         uploaded (Article 9(2)(a)). If you choose &ldquo;Not now&rdquo;, nothing is uploaded and your
         log stays on your phone. You can withdraw your consent at any time by deleting your
         account.</p>
+        <p>Sending a summary of the log to Google&rsquo;s Gemini API for the Advisor, and a photo for an illustrated
+        avatar, also rest on your explicit consent, given in the app before the first question (Article 9(2)(a)).
+        Purchase records are needed to provide the subscription you bought (Article 6(1)(b)).</p>
       </div>
     </section>
 
@@ -210,7 +261,7 @@
       <p class="section-label">Changes to this policy</p>
       <div class="prose">
         <p>We update this policy before adding any feature that uses data differently &mdash; for
-        example Premium or AI features &mdash; and revise the &ldquo;Last updated&rdquo;
+        example AI logging by voice or text &mdash; and revise the &ldquo;Last updated&rdquo;
         date at the top of this page when we do.</p>
       </div>
     </section>
@@ -220,7 +271,9 @@
       <div class="prose">
         <p>No account needed. Your baby&rsquo;s log stays on your phone unless you choose to share, and
         Android backup is off. No ads, no analytics, no trackers. If you sign in and agree to share,
-        your family&rsquo;s log is kept on our server in Germany, shared with the people in your family, until you delete your account.</p>
+        your family&rsquo;s log is kept on our server in Germany, shared with the people in your family, until you delete your account.
+        The Baby Advisor sends your question and a summary of your log to Google&rsquo;s Gemini AI only when you ask it,
+        and only after you agree.</p>
       </div>
     </section>
 
