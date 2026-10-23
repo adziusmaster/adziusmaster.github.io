@@ -81,7 +81,7 @@
       <div class="prose">
         <p>Unless you choose to share, everything Coo holds is stored <strong>on your phone only</strong>:</p>
         <ul>
-          <li>the care log &mdash; feeds, diapers, sleep and pumping, with their times, amounts and notes;</li>
+          <li>the care log &mdash; feeds, diapers, sleep and pumping, growth measurements (weight, length, head circumference), medicines, temperatures, vaccinations and doctor visits, with their times, amounts and notes;</li>
           <li>your baby&rsquo;s name, and any other names you call them;</li>
           <li>your baby&rsquo;s birth date and due date;</li>
           <li>your app settings &mdash; units, the kinds of entry you have hidden, theme, quiet hours and language.</li>
@@ -157,13 +157,17 @@
         agreement; if you choose &ldquo;Not now&rdquo;, nothing is sent.</p>
         <p>When you ask, the app sends to our server: your question, the earlier messages of that conversation (at most
         the last ten), the app&rsquo;s language, your family&rsquo;s time zone, and a summary of the last seven days of
-        your log (the times, durations and amounts of feeds, sleep, diapers and pumping, without notes). Our server
+        your log (the times, durations and amounts of feeds, sleep, diapers and pumping; the medicines, temperatures,
+        vaccinations and doctor visits of the last two weeks; and growth measurements with their WHO percentiles &mdash;
+        all without notes). Our server
         adds your baby&rsquo;s first name and age in weeks, and sends all of this to Google&rsquo;s Gemini API, which
         writes the answer, under the <a href="https://ai.google.dev/gemini-api/terms">Gemini API terms</a>. Google
         LLC may process this data outside the EU.</p>
         <p>Our server does not store your questions, the summary or the answers. It keeps only a count of how many
         questions each account asked per day, to apply the daily limit; the count is deleted with your account.
         Your conversations are kept on your phone, and you can delete them in the Advisor&rsquo;s history.</p>
+        <p>&ldquo;This week, in words&rdquo; on the Stats tab is written the same way, with the same agreement and the
+        same summary, only when you tap &ldquo;Write it&rdquo;; it counts as an Advisor question.</p>
         <p>The answers are general information, not medical advice. If you are worried about your baby, contact your
         doctor; in an emergency, call 112.</p>
       </div>
@@ -186,6 +190,16 @@
         <p>Our server does not store the text or Gemini&rsquo;s answer. It keeps a count of how many times your family
         used Tell Coo per day, to apply the daily limit; the count is deleted with the family. Without a connection, the
         text is kept on your phone only, until you review or drop it.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <p class="section-label">Report for the doctor</p>
+      <div class="prose">
+        <p>The report for the doctor (a PDF on the Stats tab) is made entirely on your phone. Coo does not send it
+        anywhere: it opens your phone&rsquo;s share sheet, and goes only where you choose to send or print it. The growth
+        chart compares measurements with the WHO Child Growth Standards on your phone; whether it uses the girls&rsquo;
+        or the boys&rsquo; chart is kept on that phone only.</p>
       </div>
     </section>
 
