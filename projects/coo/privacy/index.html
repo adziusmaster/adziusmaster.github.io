@@ -157,9 +157,11 @@
         <p>The Advisor tab answers questions about your baby with the help of Google&rsquo;s Gemini AI. It needs you to
         be signed in and sharing. Before your first question, Coo tells you what is sent and asks for your
         agreement; if you choose &ldquo;Not now&rdquo;, nothing is sent.</p>
-        <p>When you ask, the app sends to our server: your question, the earlier messages of that conversation (at most
-        the last ten), the app&rsquo;s language, your family&rsquo;s time zone, and a summary of the last seven days of
-        your log (the times, durations and amounts of feeds, sleep, diapers and pumping; the medicines, temperatures,
+        <p>When you ask, the app sends to our server: your question (typed, or spoken and written down as described
+        under Tell Coo), the earlier messages of that conversation (at most the last twenty), the app&rsquo;s language,
+        your family&rsquo;s time zone, and a summary of your log: every feed, sleep, diaper and pumping of the last two
+        days with its time, the totals of each of the last fourteen days and the last four weeks, Coo&rsquo;s estimate of
+        the next sleep (the times, durations and amounts of feeds, sleep, diapers and pumping; the medicines, temperatures,
         vaccinations and doctor visits of the last two weeks; and growth measurements with their WHO percentiles &mdash;
         all without notes). Our server
         adds your baby&rsquo;s first name and age in weeks, and sends all of this to Google&rsquo;s Gemini API, which
@@ -180,9 +182,15 @@
       <div class="prose">
         <p>&ldquo;Tell Coo&rdquo; lets you say or type what happened (&ldquo;she started on the left&rdquo;) instead of
         tapping buttons. It needs you to be signed in and sharing, and Coo asks for your agreement before the first use.</p>
-        <p><strong>Your voice is not recorded by Coo.</strong> Speech is turned into text by your phone&rsquo;s own
-        Android speech recogniser (on the device where your phone supports it, otherwise by Google&rsquo;s speech service,
-        under your phone&rsquo;s settings). Coo only receives the resulting text.</p>
+        <p><strong>Speaking.</strong> When you are signed in and speak to Tell Coo or the Advisor, the app records what
+        you say (up to a minute, compressed on your phone) and sends the recording, with the words it should expect
+        (your baby&rsquo;s names and the usual care words) and the app&rsquo;s language, to our server and on to
+        Google&rsquo;s Gemini API, which writes down what was said. Names you say cannot be replaced in a recording
+        before Gemini hears it. Neither our server nor the app keeps the recording: it is deleted from the phone as
+        soon as it is sent, and our server only passes it on. Our server keeps a count of voice messages per family
+        per day, to apply the daily limit. When you are signed out, or the server cannot be reached, speech is turned
+        into text by your phone&rsquo;s own Android speech recogniser instead, under your phone&rsquo;s settings, and
+        Coo receives only the text.</p>
         <p>The text, at most 1,000 characters, is sent to our server with what is running at that moment (for example a
         feed on the left side), the last breast side, your units, the app&rsquo;s language and your time zone. Before
         anything leaves our server, your babies&rsquo; and family members&rsquo; names, email addresses, phone numbers,
