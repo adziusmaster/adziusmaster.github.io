@@ -698,6 +698,26 @@ a.card:focus-visible::after { opacity: 1; }
   padding: 6px 10px;
 }
 
+/* Screenshots on a project page: a hairline frame that glows, like everything else here. */
+.project-shot {
+  margin: 0;
+  max-width: 980px;
+}
+
+.project-shot img {
+  width: 100%;
+  border: 1px solid var(--hairline-strong);
+  box-shadow: var(--glow-rest);
+}
+
+.project-shot figcaption {
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-top: 12px;
+}
+
 .back {
   display: inline-block;
   font-family: var(--mono);

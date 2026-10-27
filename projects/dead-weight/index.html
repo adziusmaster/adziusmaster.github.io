@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dead Weight — Andrzej Lech</title>
+<meta name="description" content="Dead Weight: twenty days in an attic at the end of the world. A hand-drawn survival game where every choice is a dice throw you never see. Why I built it, and how the dice work. Android, in development.">
+<link rel="canonical" href="https://lechdigital.nl/projects/dead-weight/">
+<meta name="author" content="Andrzej Lech">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0F0A0D">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Lech Digital">
+<meta property="og:locale" content="en_GB">
+<meta property="og:url" content="https://lechdigital.nl/projects/dead-weight/">
+<meta property="og:title" content="Dead Weight — twenty days in the attic">
+<meta property="og:description" content="A hand-drawn survival game where every choice is a dice throw you never see. You can tilt the odds. You can never be sure.">
+<meta property="og:image" content="https://lechdigital.nl/assets/img/dead-weight/ewa-window.jpg">
+
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/barlow-condensed-700-3.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/archivo-400-3.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/space-mono-400-3.woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/site.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoGame",
+  "name": "Dead Weight",
+  "url": "https://lechdigital.nl/projects/dead-weight/",
+  "description": "A hand-drawn survival game: twenty days in an attic at the end of the world, where every choice is a hidden dice throw.",
+  "gamePlatform": "Android",
+  "genre": ["Survival", "Interactive fiction"],
+  "author": { "@type": "Person", "name": "Andrzej Lech", "url": "https://lechdigital.nl/" }
+}
+</script>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead-outer">
+  <div class="wrap masthead">
+    <a class="mark" href="../../index.html">&#9670;&nbsp; A. Lech</a>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="../../index.html#work">Work</a></li>
+        <li><a href="../../index.html#garage">Garage</a></li>
+        <li><a href="../../index.html#about">About</a></li>
+        <li><a href="../../index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <span class="mono coords">Schiedam &nbsp;51.92&deg;N 4.39&deg;E</span>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="project-head">
+    <div class="wrap">
+      <span class="section-label">[ Project ] &nbsp;Dead Weight</span>
+      <h1>Dead Weight</h1>
+      <p class="lede">
+        Twenty days in an attic at the end of the world. The door is nailed shut, the ladder to
+        the roof is pulled up, and everything you own is on one shelf. Every choice you make is a
+        dice throw you never see. You can tilt the odds. You can never be sure.
+      </p>
+      <div class="project-links">
+        <a href="privacy/">Privacy policy &rarr;</a>
+        <span class="project-note">
+          <strong>In development</strong> &mdash; Android. There is a 1.0.0 test build; it is not on
+          Google Play yet.
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <figure class="project-shot">
+        <img src="../../assets/img/dead-weight/ewa-window.jpg" width="1600" height="761"
+             alt="Ewa, a nurse, stands at the window of her father's attic flat. Across the street a woman waves from her window. A caption reads: a curtain moves in the building opposite. Two choices: wave back, or get away from the window.">
+        <figcaption>Day one, in Ewa&rsquo;s father&rsquo;s flat. Wave back, or get away from the window? You won&rsquo;t know for days what that woman really is.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <span class="section-label">[ 01 ] &nbsp;Why</span>
+      <h2>I wanted a game I can&rsquo;t predict</h2>
+      <div class="prose">
+        <p>
+          I have always liked the end of the world. Not the explosions &mdash; the after. Empty
+          streets, rationed water, a radio that slowly stops talking, and the quiet question of what
+          you&rsquo;d actually do. Post-apocalyptic stories are about small decisions with huge
+          weight: open the door or keep it shut, share the food or hide it.
+        </p>
+        <p>
+          I also wanted to explore text and choice-based games, where the story is the game and
+          every line has to earn its place. And I wanted dice in it. Not a puzzle with a right
+          answer you can look up, but a roll you can only lean on, so no two runs go the same way.
+        </p>
+        <p>
+          That combination turns out to be cruel in the best way. In a world where a scratch can
+          kill you and a bottle of water is a fortune, chance stops being a game mechanic and becomes
+          the whole problem. You did everything right, and the soldier still fired.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <span class="section-label">[ 02 ] &nbsp;The dice</span>
+      <h2>Every choice is a throw you never see</h2>
+      <div class="prose">
+        <p>
+          <strong>You see &ldquo;risky&rdquo;, never the odds.</strong> Twenty-seven of the game&rsquo;s
+          seventy-eight choices roll a hidden die. Each has a base chance, and the run moves it: a
+          crowbar helps you pry a door, two days without water hurt every roll you make, a bite you
+          are hiding hurts more. The chance is always kept between 5% and 95%. Nothing is ever
+          certain, and nothing is ever hopeless.
+        </p>
+        <p>
+          <strong>The world has secrets from the first morning.</strong> The woman across the
+          street is honest, or bait for the men in her stairwell, or bitten and hiding it. The run
+          decides which before you ever see her, and the game only tells you at the end. The same
+          choice &mdash; let her in &mdash; saves one run and ends another.
+        </p>
+        <p>
+          <strong>Bodies are not hit points.</strong> The third day without water kills you. Food
+          takes about three weeks, but hunger makes you weak within days, and weak people lose
+          their rolls. A wound can be dressed. A bite cannot: you get one last day, and you choose
+          what it&rsquo;s for.
+        </p>
+        <p>
+          <strong>Playing it safe is a trap.</strong> Every safe option costs something quiet:
+          morale, a day of water, a chance that won&rsquo;t come back. To check the balance, bots play
+          thousands of runs after every change. A bot that takes random choices survives about a
+          third of the time with each of the three survivors. One that always plays it safe mostly
+          dies of thirst before day twenty.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <span class="section-label">[ 03 ] &nbsp;Three people, three flats</span>
+      <h2>Who&rsquo;s in the attic?</h2>
+      <div class="prose">
+        <p>
+          <strong>Ewa</strong>, a night-shift nurse, came to her father&rsquo;s flat when the hospital
+          stopped answering. <strong>Marek</strong>, a carpenter, was turning an attic into a studio
+          for a client who never came back. <strong>Ola</strong>, a bike courier, ran up the stairs
+          instead of down when the street filled with screaming. Each has their own flat, their own
+          story events and their own strengths: Ewa reads wounds and bites, Marek builds, Ola runs
+          and climbs.
+        </p>
+        <p>
+          Their flats fall apart with the city, in four stages from a tidy home on day one to a
+          wreck by the end, and the survivors change with them: worn, injured, or bitten.
+        </p>
+      </div>
+      <figure class="project-shot" style="margin-top:34px">
+        <img src="../../assets/img/dead-weight/survivors.jpg" width="1500" height="760" loading="lazy"
+             alt="The three survivors side by side: Ewa in scrubs and a grey cardigan, Marek in a flat cap and work jacket, Ola in a bike helmet and hi-vis vest.">
+        <figcaption>Ewa, 34 &middot; Marek, 52 &middot; Ola, 23</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <span class="section-label">[ 04 ] &nbsp;What I learned</span>
+      <h2>A room is not a screen with paper on it</h2>
+      <div class="prose">
+        <p>
+          <strong>The first version was boring, and I said so.</strong> It had the rules and the
+          dice, and you read it all off a diary page that covered half the room. So the room became
+          the stage: the survivor stands in it and walks to the window when something happens
+          outside, their thoughts are speech bubbles, the radio talks from the table, and in the
+          morning you tap the shelf to eat and the door to nail another plank.
+        </p>
+        <p>
+          <strong>The window is the television.</strong> Soldiers and people running in the first
+          days, then the dead, then scavengers with rifles, and the burnt-out Humvee that stays below
+          the window from day ten. The city falls apart where you can see it.
+        </p>
+        <p>
+          <strong>The rules are one small, pure library.</strong> Every run is a seed plus the list
+          of what you did, so a save is just that list, replayed, and a future server could check
+          any run the same way. A self-check on the phone proves it rolls exactly what the tests
+          roll.
+        </p>
+        <p>
+          <strong>The art is generated, then built into a world.</strong> The comic-book look comes
+          from images I generated with Gemini from my own prompts. Scripts cut them out, and the
+          game lights them: a candle that flickers, rain and lightning on the glass, the night
+          turning everything blue.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <span class="section-label">[ 05 ] &nbsp;Stack</span>
+      <div class="stack-row">
+        <span>Unity 6.3</span>
+        <span>URP 2D</span>
+        <span>C#</span>
+        <span>.NET 10</span>
+        <span>Python</span>
+        <span>Gemini</span>
+        <span>45 tests</span>
+      </div>
+      <p style="margin-top:34px"><a class="back" href="../../index.html#garage">&larr; &nbsp;Back to the garage</a></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap mono">
+    <span>Lech Digital &mdash; Schiedam</span>
+    <span>Built by hand. No trackers, no cookies, no JavaScript.</span>
+  </div>
+</footer>
+
+</body>
+</html>
