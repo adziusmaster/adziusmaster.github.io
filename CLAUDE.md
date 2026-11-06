@@ -28,6 +28,12 @@ assets/fonts/           self-hosted woff2 (Barlow Condensed, Archivo, Space Mono
 
 `assets/` belongs to the personal site. **Prospects never use it** — see below.
 
+`mochi/` is the **Mochi product page** (owner, 2026-11-06): the app's own look (matcha, Figtree, the bunny), built
+to be found by parents searching for a baby tracker. Self-contained like a prospect (`mochi/assets/`: its CSS, fonts,
+screenshots, film), but indexed and in the sitemap (with a video entry). `projects/mochi/` stays the Lech Digital
+write-up in the site's own style and links to it; the app's privacy and delete-account pages stay under
+`projects/mochi/`, because the app and the Play listing link there.
+
 ## The personal site's design language
 
 Tokens live at the top of `assets/css/site.css`. The rules that matter:
